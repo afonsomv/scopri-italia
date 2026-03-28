@@ -1,65 +1,113 @@
-import Image from "next/image";
+"use client";
+
+import { useEffect, useState } from "react";
+import { cities } from "@/data/itinerary";
+import { getSpotsByCity } from "@/data/spots";
+import { getGameState, getCityProgress } from "@/lib/progress";
+import { GameState } from "@/lib/types";
+import CityCard from "@/components/CityCard";
+import Link from "next/link";
 
 export default function Home() {
+  const [state, setState] = useState<GameState | null>(null);
+
+  useEffect(() => {
+    setState(getGameState());
+  }, []);
+
+  if (!state) return null;
+
+  const hasProfile = state.profile !== null;
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className="px-4 py-6 animate-fade-in">
+      {/* Header */}
+      <div className="flex items-center justify-between mb-8">
+        <div>
+          <h1 className="text-2xl font-bold text-ink">Scopri Italia</h1>
+          <p className="text-sm text-ink-light mt-0.5">
+            {hasProfile
+              ? `Ciao, ${state.profile!.name}!`
+              : "Learn history through play"}
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <Link
+          href="/profile"
+          className="w-11 h-11 rounded-full bg-warm-white flex items-center justify-center text-xl hover:bg-gold-light/30 transition-colors"
+        >
+          {hasProfile ? state.profile!.avatar : "👤"}
+        </Link>
+      </div>
+
+      {/* Stats bar */}
+      {hasProfile && (
+        <div className="flex items-center gap-4 mb-6 p-3 rounded-xl bg-white border border-warm-white">
+          <div className="flex-1 text-center">
+            <div className="text-lg font-bold text-terracotta">
+              {state.totalScore}
+            </div>
+            <div className="text-xs text-stone-light">Points</div>
+          </div>
+          <div className="w-px h-8 bg-warm-white" />
+          <div className="flex-1 text-center">
+            <div className="text-lg font-bold text-olive">
+              {Object.values(state.progress).filter((p) => p.completed).length}
+            </div>
+            <div className="text-xs text-stone-light">Spots</div>
+          </div>
+          <div className="w-px h-8 bg-warm-white" />
+          <div className="flex-1 text-center">
+            <div className="text-lg font-bold text-gold">
+              {state.bestStreak}
+            </div>
+            <div className="text-xs text-stone-light">Best Streak</div>
+          </div>
         </div>
-      </main>
+      )}
+
+      {/* Welcome card for new users */}
+      {!hasProfile && (
+        <Link
+          href="/profile"
+          className="block mb-6 p-5 rounded-2xl bg-gradient-to-br from-terracotta to-terracotta/80 text-white"
+        >
+          <h2 className="font-semibold text-lg">Welcome, traveler!</h2>
+          <p className="text-sm mt-1 text-white/80">
+            Set up your profile to start exploring Italian history through
+            quizzes and fun facts.
+          </p>
+          <div className="mt-3 text-sm font-medium bg-white/20 inline-block px-3 py-1.5 rounded-lg">
+            Get Started →
+          </div>
+        </Link>
+      )}
+
+      {/* Trip overview */}
+      <div className="mb-4">
+        <h2 className="text-sm font-semibold text-stone uppercase tracking-wide">
+          Your Itinerary
+        </h2>
+        <p className="text-xs text-stone-light mt-0.5">
+          April 15–21, 2026 — 5 cities, 40+ spots
+        </p>
+      </div>
+
+      {/* City cards */}
+      <div className="space-y-3">
+        {cities.map((city) => {
+          const spots = getSpotsByCity(city.slug);
+          const spotIds = spots.map((s) => s.id);
+          const progress = getCityProgress(city.slug, spotIds);
+          return (
+            <CityCard key={city.slug} city={city} progress={progress} />
+          );
+        })}
+      </div>
+
+      {/* Footer */}
+      <p className="text-center text-xs text-stone-light mt-8 mb-4">
+        Scopri Italia — Built with curiosity
+      </p>
     </div>
   );
 }
