@@ -1,36 +1,127 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Scopri Italia
+
+A gamified travel companion PWA for learning Italian history through interactive quizzes, scavenger hunts, and fun facts. Built for a 7-day Italy trip (April 15-21, 2026).
+
+## Features
+
+### Cities & Spots
+- **5 cities**: Pisa, Lucca, Siena, San Gimignano, Roma
+- **42 historical spots** with rich history descriptions and fun facts
+- Spots organized by day/itinerary schedule
+- Per-city progress tracking with visual progress rings
+
+### Quiz System
+- **150+ multiple-choice questions** across all spots
+- Instant visual feedback (correct/wrong animations)
+- Explanations after each answer
+- Streak tracking (current + best)
+- Score-based result messages (Perfetto! / Great job! / Not bad! / Keep exploring!)
+- Retake quizzes to improve your score (best score kept)
+
+### Scavenger Hunt Challenges
+- 4 challenge types: Find, Count, Photo, Observe
+- Toggle challenges as complete/incomplete
+- Hint system with reveal/hide
+- Visual completion indicators
+
+### User Profile
+- Custom name (max 20 characters)
+- Avatar picker (16 emoji options)
+- Personalized greeting on home screen
+- Progress reset option
+
+### Progress & Gamification
+- All progress persisted in localStorage
+- Per-spot completion tracking
+- Per-city percentage progress with progress rings
+- Total score aggregation
+- Current and best streak tracking
+- Completion badges on spots and cities
+
+### PWA Support
+- Installable as a mobile app (Add to Home Screen)
+- Standalone display mode
+- Custom theme colors (terracotta/cream)
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Framework | Next.js 16.2.1 (App Router) |
+| UI | React 19.2.4 |
+| Styling | Tailwind CSS 4 |
+| Language | TypeScript 5 |
+| Font | Geist |
+| State | localStorage (no backend) |
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) on your phone or browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+app/
+  page.tsx              # Home dashboard (cities + stats)
+  profile/page.tsx      # Profile setup (name + avatar)
+  city/[slug]/page.tsx  # City detail (spots by day + progress)
+  spot/[id]/page.tsx    # Spot detail (history, facts, challenges)
+  quiz/[id]/page.tsx    # Quiz play screen
+  layout.tsx            # Root layout, PWA meta, fonts
 
-## Learn More
+components/
+  CityCard.tsx          # City card with progress ring
+  SpotCard.tsx          # Spot item with completion status
+  QuizQuestion.tsx      # Interactive quiz question UI
+  ProfileAvatar.tsx     # Avatar selection grid
+  ProgressRing.tsx      # SVG circular progress indicator
 
-To learn more about Next.js, take a look at the following resources:
+data/
+  itinerary.ts          # Cities metadata + day schedule
+  spots/                # 42 spots across 5 cities
+  quizzes/              # 150+ quiz questions
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+lib/
+  types.ts              # TypeScript interfaces
+  progress.ts           # localStorage state management
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Routes
 
-## Deploy on Vercel
+| Route | Description |
+|-------|-------------|
+| `/` | Home dashboard with city cards and total stats |
+| `/profile` | Create/edit profile, reset progress |
+| `/city/[slug]` | City overview with spots grouped by day |
+| `/spot/[id]` | Spot detail with history, facts, and challenges |
+| `/quiz/[id]` | Take quiz for a specific spot |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Design
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Italian heritage color palette:
+- **Terracotta** `#c75c2c` — primary actions
+- **Olive** `#606c38` — success states
+- **Gold** `#dda15e` — streaks, highlights
+- **Cream** `#faf8f5` — background
+- **Ink** `#2b2b2b` — text
+
+Custom animations: fade-in, correct answer pulse, wrong answer shake, streak pop.
+
+## Changelog
+
+### v1.0.0 — Initial Release (2026-03-28)
+- Home dashboard with 5 city cards and overall stats
+- City pages with spots organized by itinerary day
+- 42 spot detail pages with history, fun facts, and scavenger hunt challenges
+- Quiz system with 150+ questions, streak tracking, and score persistence
+- Profile system with 16 avatar options and name customization
+- Progress tracking with localStorage persistence (per-spot, per-city, total)
+- Progress rings on city cards and city pages
+- PWA manifest for mobile installation
+- Italian heritage design system (terracotta/olive/gold/cream)
+- Custom animations (fade-in, correct/wrong feedback, streak celebration)
