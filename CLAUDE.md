@@ -2,6 +2,8 @@
 
 ## Project Rules
 
+- **Never add `Co-Authored-By` lines to commit messages** — breaks Vercel deployments on Hobby plan.
+
 - **Always update README.md** when adding new features or making significant changes:
   - Add new features to the Features section
   - Update the Changelog section with a new entry (date + bullet points)
