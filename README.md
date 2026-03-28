@@ -6,7 +6,7 @@ A gamified travel companion PWA for learning Italian history through interactive
 
 ### Cities & Spots
 - **5 cities**: Pisa, Lucca, Siena, San Gimignano, Roma
-- **42 historical spots** with rich history descriptions and fun facts
+- **42 historical spots** with rich history descriptions and tap-to-reveal fun facts
 - Spots organized by day/itinerary schedule
 - Per-city progress tracking with visual progress rings
 
@@ -30,6 +30,14 @@ A gamified travel companion PWA for learning Italian history through interactive
 - Personalized greeting on home screen
 - Progress reset option
 
+### Badges & Trophy Room
+- 12 badges across 3 categories: milestone, city, skill
+- City completion badges for all 5 cities
+- Skill badges for perfect scores and answer streaks
+- Milestone badges (first quiz, halfway, grand tourist)
+- Challenge hunter badge for scavenger hunt completions
+- Trophy room page with unlocked/locked badge grid and progress bar
+
 ### Progress & Gamification
 - All progress persisted in localStorage
 - Per-spot completion tracking
@@ -37,6 +45,11 @@ A gamified travel companion PWA for learning Italian history through interactive
 - Total score aggregation
 - Current and best streak tracking
 - Completion badges on spots and cities
+
+### Navigation
+- Fixed bottom navigation bar (Home, Badges, Profile)
+- Active tab highlighting with terracotta color
+- Safe area support for notched devices
 
 ### PWA Support
 - Installable as a mobile app (Add to Home Screen)
@@ -68,6 +81,7 @@ Open [http://localhost:3000](http://localhost:3000) on your phone or browser.
 ```
 app/
   page.tsx              # Home dashboard (cities + stats)
+  badges/page.tsx       # Trophy room (badge collection grid)
   profile/page.tsx      # Profile setup (name + avatar)
   city/[slug]/page.tsx  # City detail (spots by day + progress)
   spot/[id]/page.tsx    # Spot detail (history, facts, challenges)
@@ -75,6 +89,7 @@ app/
   layout.tsx            # Root layout, PWA meta, fonts
 
 components/
+  BottomNav.tsx         # Fixed bottom navigation bar
   CityCard.tsx          # City card with progress ring
   SpotCard.tsx          # Spot item with completion status
   QuizQuestion.tsx      # Interactive quiz question UI
@@ -82,6 +97,7 @@ components/
   ProgressRing.tsx      # SVG circular progress indicator
 
 data/
+  badges.ts             # Badge definitions + unlock engine
   itinerary.ts          # Cities metadata + day schedule
   spots/                # 42 spots across 5 cities
   quizzes/              # 150+ quiz questions
@@ -99,6 +115,7 @@ lib/
 | `/profile` | Create/edit profile, reset progress |
 | `/city/[slug]` | City overview with spots grouped by day |
 | `/spot/[id]` | Spot detail with history, facts, and challenges |
+| `/badges` | Badges collection |
 | `/quiz/[id]` | Take quiz for a specific spot |
 
 ## Design
@@ -125,3 +142,19 @@ Custom animations: fade-in, correct answer pulse, wrong answer shake, streak pop
 - PWA manifest for mobile installation
 - Italian heritage design system (terracotta/olive/gold/cream)
 - Custom animations (fade-in, correct/wrong feedback, streak celebration)
+
+### v1.3.0 — Tap-to-Reveal Fun Facts (2026-03-28)
+- Fun facts on spot pages are now hidden behind tap-to-reveal cards
+- Gradient hint cards with "?" icon invite tapping
+- Smooth fade-in animation when facts are revealed
+
+### v1.2.0 — Badges & Trophy Room (2026-03-28)
+- Added 12 badge definitions across milestone, city, and skill categories
+- Badge unlock engine that evaluates game state against badge conditions
+- Trophy room page with 2-column grid showing unlocked/locked badges
+- Progress bar showing total badge completion
+
+### v1.1.0 — Navigation (2026-03-28)
+- Added bottom navigation bar with Home, Badges, and Profile tabs
+- Active tab detection with terracotta highlight
+- Safe area padding for notched devices

@@ -19,6 +19,7 @@ export default function SpotPage() {
   const [progress, setProgress] = useState<SpotProgress | null>(null);
   const [loaded, setLoaded] = useState(false);
   const [expandedHint, setExpandedHint] = useState<string | null>(null);
+  const [revealedFacts, setRevealedFacts] = useState<Set<number>>(new Set());
 
   const spot = getSpotById(id);
 
@@ -88,23 +89,45 @@ export default function SpotPage() {
         <p className="text-sm leading-relaxed text-ink/80">{spot.history}</p>
       </div>
 
-      {/* Fun facts */}
+      {/* Fun facts — tap to reveal */}
       <div className="mb-6">
-        <h2 className="text-sm font-semibold text-stone uppercase tracking-wide mb-3">
+        <h2 className="text-sm font-semibold text-stone uppercase tracking-wide mb-1">
           Did You Know?
         </h2>
+        <p className="text-xs text-stone-light mb-3">
+          Tap each card to reveal a fun fact
+        </p>
         <div className="space-y-2.5">
-          {spot.funFacts.map((fact, i) => (
-            <div
-              key={i}
-              className="p-3.5 rounded-xl bg-white border border-warm-white"
-            >
-              <p className="text-sm text-ink/80 leading-relaxed">
-                <span className="text-gold font-bold mr-1.5">#{i + 1}</span>
-                {fact}
-              </p>
-            </div>
-          ))}
+          {spot.funFacts.map((fact, i) => {
+            const isRevealed = revealedFacts.has(i);
+            return (
+              <button
+                key={i}
+                onClick={() =>
+                  setRevealedFacts((prev) => new Set(prev).add(i))
+                }
+                className={`w-full text-left p-3.5 rounded-xl border transition-all duration-300 ${
+                  isRevealed
+                    ? "bg-white border-gold/30"
+                    : "bg-gradient-to-r from-gold/10 to-terracotta/5 border-gold/20 hover:border-gold/40 active:scale-[0.98]"
+                }`}
+              >
+                {isRevealed ? (
+                  <p className="text-sm text-ink/80 leading-relaxed animate-fade-in">
+                    <span className="text-gold font-bold mr-1.5">#{i + 1}</span>
+                    {fact}
+                  </p>
+                ) : (
+                  <div className="flex items-center gap-2">
+                    <span className="text-gold text-lg">?</span>
+                    <span className="text-sm font-medium text-gold/70">
+                      Tap to reveal fact #{i + 1}
+                    </span>
+                  </div>
+                )}
+              </button>
+            );
+          })}
         </div>
       </div>
 
