@@ -25,8 +25,18 @@ export default function SpotPage() {
 
   useEffect(() => {
     setProgress(getSpotProgress(id));
+    const stored = localStorage.getItem(`facts-revealed-${id}`);
+    if (stored) setRevealedFacts(new Set(JSON.parse(stored)));
     setLoaded(true);
   }, [id]);
+
+  const revealFact = (i: number) => {
+    setRevealedFacts((prev) => {
+      const next = new Set(prev).add(i);
+      localStorage.setItem(`facts-revealed-${id}`, JSON.stringify([...next]));
+      return next;
+    });
+  };
 
   const handleToggleChallenge = (challengeId: string) => {
     const newState = toggleChallenge(id, challengeId);
@@ -103,9 +113,7 @@ export default function SpotPage() {
             return (
               <button
                 key={i}
-                onClick={() =>
-                  setRevealedFacts((prev) => new Set(prev).add(i))
-                }
+                onClick={() => revealFact(i)}
                 className={`w-full text-left p-3.5 rounded-xl border transition-all duration-300 ${
                   isRevealed
                     ? "bg-white border-gold/30"
