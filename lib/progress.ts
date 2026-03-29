@@ -101,6 +101,10 @@ export function resetProgress() {
   state.currentStreak = 0;
   state.bestStreak = 0;
   saveGameState(state);
+  // Clear revealed fun facts for all spots
+  Object.keys(localStorage)
+    .filter((key) => key.startsWith("facts-revealed-"))
+    .forEach((key) => localStorage.removeItem(key));
 }
 
 export function getCityProgress(citySlug: string, spotIds: string[]) {
