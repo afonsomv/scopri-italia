@@ -22,7 +22,11 @@ export default function ProfilePage() {
       setIsEditing(true);
     }
     const state = getGameState();
-    setHasProgress(Object.keys(state.progress).length > 0);
+    const hasQuizProgress = Object.keys(state.progress).length > 0;
+    const hasRevealedFacts = Object.keys(localStorage).some((k) =>
+      k.startsWith("facts-revealed-")
+    );
+    setHasProgress(hasQuizProgress || hasRevealedFacts);
   }, []);
 
   const handleReset = () => {

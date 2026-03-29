@@ -1,12 +1,26 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { getSpotById } from "@/data/spots";
 import { getQuizBySpotId } from "@/data/quizzes";
 import { saveQuizResult } from "@/lib/progress";
+import { QuizQuestion as QuizQuestionType } from "@/lib/types";
 import QuizQuestion from "@/components/QuizQuestion";
+
+function shuffleQuestion(q: QuizQuestionType): QuizQuestionType {
+  const indices = q.options.map((_, i) => i);
+  for (let i = indices.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [indices[i], indices[j]] = [indices[j], indices[i]];
+  }
+  return {
+    ...q,
+    options: indices.map((i) => q.options[i]),
+    correctIndex: indices.indexOf(q.correctIndex),
+  };
+}
 
 export default function QuizPage() {
   const { id } = useParams<{ id: string }>();
@@ -19,6 +33,11 @@ export default function QuizPage() {
 
   const spot = getSpotById(id);
   const quiz = getQuizBySpotId(id);
+  const shuffledQuestions = useMemo(
+    () => quiz?.questions.map(shuffleQuestion) ?? [],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [id]
+  );
 
   if (!spot || !quiz) {
     return (
@@ -31,7 +50,7 @@ export default function QuizPage() {
     );
   }
 
-  const questions = quiz.questions;
+  const questions = shuffledQuestions;
   const totalQuestions = questions.length;
 
   const handleAnswer = (correct: boolean) => {
