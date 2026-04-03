@@ -1,4 +1,4 @@
-const CACHE_NAME = "scopri-italia-v2";
+const CACHE_NAME = "scopri-italia-v3";
 
 const PRECACHE_URLS = [
   "/",
@@ -84,7 +84,21 @@ self.addEventListener("activate", (event) => {
   self.clients.claim();
 });
 
-// Fetch: network-first for navigations, cache-first for assets
+// Check if a request is a Next.js RSC (React Server Components) data request
+function isRscRequest(request) {
+  return (
+    request.headers.get("Rsc") === "1" ||
+    request.headers.get("Next-Router-Prefetch") === "1" ||
+    new URL(request.url).searchParams.has("_rsc")
+  );
+}
+
+// Strip the URL to its pathname for cache matching (ignoring RSC query params)
+function getPathname(url) {
+  return new URL(url).pathname;
+}
+
+// Fetch: network-first for navigations/RSC, cache-first for assets
 self.addEventListener("fetch", (event) => {
   const { request } = event;
 
@@ -101,6 +115,34 @@ self.addEventListener("fetch", (event) => {
           return response;
         })
         .catch(() => caches.match(request).then((r) => r || caches.match("/")))
+    );
+    return;
+  }
+
+  // RSC data requests (client-side navigation): network-first, fall back to
+  // cached HTML which forces a full page load that works offline
+  if (isRscRequest(request)) {
+    event.respondWith(
+      fetch(request)
+        .then((response) => {
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
+          return response;
+        })
+        .catch(() => {
+          // Try the RSC cache first (if previously visited while online)
+          return caches.match(request).then((cached) => {
+            if (cached) return cached;
+            // Fall back to the cached HTML page — this triggers a full reload
+            const pathname = getPathname(request.url);
+            return caches.match(pathname).then((htmlResponse) => {
+              if (htmlResponse) {
+                return htmlResponse;
+              }
+              return caches.match("/");
+            });
+          });
+        })
     );
     return;
   }
