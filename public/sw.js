@@ -1,4 +1,4 @@
-const CACHE_NAME = "scopri-italia-v3";
+const CACHE_NAME = "scopri-italia-v4";
 
 const PRECACHE_URLS = [
   "/",
@@ -64,10 +64,29 @@ const PRECACHE_URLS = [
   "/spot/rome-san-clemente", "/quiz/rome-san-clemente",
 ];
 
-// Install: precache shell and all pages
+// Install: precache all pages, then cache all JS/CSS chunks
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(PRECACHE_URLS))
+    caches.open(CACHE_NAME).then(async (cache) => {
+      // Precache all page HTML
+      await cache.addAll(PRECACHE_URLS);
+
+      // Parse the homepage HTML to find and cache all JS/CSS chunk URLs
+      const homeResponse = await cache.match("/");
+      if (homeResponse) {
+        const html = await homeResponse.clone().text();
+        const assetUrls = [];
+        // Match all /_next/static/ references in the HTML
+        const regex = /\/_next\/static\/[^"'\s)]+/g;
+        let match;
+        while ((match = regex.exec(html)) !== null) {
+          assetUrls.push(match[0]);
+        }
+        if (assetUrls.length > 0) {
+          await cache.addAll([...new Set(assetUrls)]);
+        }
+      }
+    })
   );
   self.skipWaiting();
 });
@@ -84,82 +103,33 @@ self.addEventListener("activate", (event) => {
   self.clients.claim();
 });
 
-// Check if a request is a Next.js RSC (React Server Components) data request
-function isRscRequest(request) {
-  return (
-    request.headers.get("Rsc") === "1" ||
-    request.headers.get("Next-Router-Prefetch") === "1" ||
-    new URL(request.url).searchParams.has("_rsc")
-  );
-}
-
-// Strip the URL to its pathname for cache matching (ignoring RSC query params)
-function getPathname(url) {
-  return new URL(url).pathname;
-}
-
-// Fetch: network-first for navigations/RSC, cache-first for assets
+// Fetch: cache-first for everything (fully static app)
 self.addEventListener("fetch", (event) => {
   const { request } = event;
 
-  // Skip non-GET and chrome-extension requests
+  // Skip non-GET and non-http requests
   if (request.method !== "GET" || !request.url.startsWith("http")) return;
 
-  // Navigation requests: network-first with cache fallback
-  if (request.mode === "navigate") {
-    event.respondWith(
-      fetch(request)
-        .then((response) => {
-          const clone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
-          return response;
-        })
-        .catch(() => caches.match(request).then((r) => r || caches.match("/")))
-    );
-    return;
-  }
-
-  // RSC data requests (client-side navigation): network-first, fall back to
-  // cached HTML which forces a full page load that works offline
-  if (isRscRequest(request)) {
-    event.respondWith(
-      fetch(request)
-        .then((response) => {
-          const clone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
-          return response;
-        })
-        .catch(() => {
-          // Try the RSC cache first (if previously visited while online)
-          return caches.match(request).then((cached) => {
-            if (cached) return cached;
-            // Fall back to the cached HTML page — this triggers a full reload
-            const pathname = getPathname(request.url);
-            return caches.match(pathname).then((htmlResponse) => {
-              if (htmlResponse) {
-                return htmlResponse;
-              }
-              return caches.match("/");
-            });
-          });
-        })
-    );
-    return;
-  }
-
-  // Static assets: cache-first
   event.respondWith(
     caches.match(request).then(
       (cached) =>
         cached ||
-        fetch(request).then((response) => {
-          // Cache successful responses for same-origin assets
-          if (response.ok && new URL(request.url).origin === self.location.origin) {
-            const clone = response.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
-          }
-          return response;
-        })
+        fetch(request)
+          .then((response) => {
+            if (response.ok && new URL(request.url).origin === self.location.origin) {
+              const clone = response.clone();
+              caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
+            }
+            return response;
+          })
+          .catch(() => {
+            // Offline fallback for navigation: try matching by pathname
+            if (request.mode === "navigate") {
+              const pathname = new URL(request.url).pathname;
+              return caches.match(pathname).then((r) => r || caches.match("/"));
+            }
+            return new Response("Offline", { status: 503 });
+          })
     )
   );
 });
