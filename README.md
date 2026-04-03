@@ -55,13 +55,16 @@ A gamified travel companion PWA for learning Italian history through interactive
 - Installable as a mobile app (Add to Home Screen)
 - Standalone display mode
 - Custom theme colors (terracotta/cream)
+- Full offline support via custom service worker
+- Precached routes for all 100+ pages
+- Offline navigation banner when connectivity is lost
 
 ## Tech Stack
 
 | Layer | Technology |
 |-------|-----------|
-| Framework | Next.js 16.2.1 (App Router) |
-| UI | React 19.2.4 |
+| Framework | Next.js 15.5.14 (App Router, `output: "export"`) |
+| UI | React 19.0.0 |
 | Styling | Tailwind CSS 4 |
 | Language | TypeScript 5 |
 | Font | Geist |
@@ -95,6 +98,7 @@ components/
   QuizQuestion.tsx      # Interactive quiz question UI
   ProfileAvatar.tsx     # Avatar selection grid
   ProgressRing.tsx      # SVG circular progress indicator
+  OfflineBanner.tsx     # Offline connectivity indicator banner
 
 data/
   badges.ts             # Badge definitions + unlock engine
@@ -153,6 +157,12 @@ Custom animations: fade-in, correct answer pulse, wrong answer shake, streak pop
 - Badge unlock engine that evaluates game state against badge conditions
 - Trophy room page with 2-column grid showing unlocked/locked badges
 - Progress bar showing total badge completion
+
+### v1.4.0 — Offline Support (2026-04-03)
+- Static export (`output: "export"`) for full offline compatibility
+- Custom service worker precaching all 100+ routes
+- PWA icons (192×192 and 512×512)
+- Offline navigation banner indicating when cached content is in use
 
 ### v1.1.0 — Navigation (2026-03-28)
 - Added bottom navigation bar with Home, Badges, and Profile tabs
