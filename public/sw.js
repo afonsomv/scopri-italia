@@ -1,4 +1,4 @@
-const CACHE_NAME = "scopri-italia-v1";
+const CACHE_NAME = "scopri-italia-v2";
 
 const PRECACHE_URLS = [
   "/",
@@ -7,9 +7,64 @@ const PRECACHE_URLS = [
   "/manifest.json",
   "/icon-192.png",
   "/icon-512.png",
+  // City pages
+  "/city/pisa",
+  "/city/lucca",
+  "/city/siena",
+  "/city/san-gimignano",
+  "/city/rome",
+  // Pisa spots & quizzes
+  "/spot/pisa-torre", "/quiz/pisa-torre",
+  "/spot/pisa-duomo", "/quiz/pisa-duomo",
+  "/spot/pisa-battistero", "/quiz/pisa-battistero",
+  "/spot/pisa-camposanto", "/quiz/pisa-camposanto",
+  "/spot/pisa-cavalieri", "/quiz/pisa-cavalieri",
+  "/spot/pisa-spina", "/quiz/pisa-spina",
+  // Lucca spots & quizzes
+  "/spot/lucca-muralhas", "/quiz/lucca-muralhas",
+  "/spot/lucca-anfiteatro", "/quiz/lucca-anfiteatro",
+  "/spot/lucca-guinigi", "/quiz/lucca-guinigi",
+  "/spot/lucca-san-michele", "/quiz/lucca-san-michele",
+  "/spot/lucca-duomo", "/quiz/lucca-duomo",
+  "/spot/lucca-san-frediano", "/quiz/lucca-san-frediano",
+  // Siena spots & quizzes
+  "/spot/siena-campo", "/quiz/siena-campo",
+  "/spot/siena-torre-mangia", "/quiz/siena-torre-mangia",
+  "/spot/siena-palazzo-pubblico", "/quiz/siena-palazzo-pubblico",
+  "/spot/siena-duomo", "/quiz/siena-duomo",
+  "/spot/siena-cripta", "/quiz/siena-cripta",
+  "/spot/siena-opera-duomo", "/quiz/siena-opera-duomo",
+  "/spot/siena-san-domenico", "/quiz/siena-san-domenico",
+  "/spot/siena-fortezza", "/quiz/siena-fortezza",
+  // San Gimignano spots & quizzes
+  "/spot/sg-cisterna", "/quiz/sg-cisterna",
+  "/spot/sg-collegiata", "/quiz/sg-collegiata",
+  "/spot/sg-torre-grossa", "/quiz/sg-torre-grossa",
+  // Rome spots & quizzes
+  "/spot/rome-trastevere", "/quiz/rome-trastevere",
+  "/spot/rome-trevi", "/quiz/rome-trevi",
+  "/spot/rome-pantheon", "/quiz/rome-pantheon",
+  "/spot/rome-navona", "/quiz/rome-navona",
+  "/spot/rome-colosseo", "/quiz/rome-colosseo",
+  "/spot/rome-arco-constantino", "/quiz/rome-arco-constantino",
+  "/spot/rome-foro-romano", "/quiz/rome-foro-romano",
+  "/spot/rome-palatino", "/quiz/rome-palatino",
+  "/spot/rome-circo-massimo", "/quiz/rome-circo-massimo",
+  "/spot/rome-giardino-aranci", "/quiz/rome-giardino-aranci",
+  "/spot/rome-buco-serratura", "/quiz/rome-buco-serratura",
+  "/spot/rome-santa-sabina", "/quiz/rome-santa-sabina",
+  "/spot/rome-piramide", "/quiz/rome-piramide",
+  "/spot/rome-gianicolo", "/quiz/rome-gianicolo",
+  "/spot/rome-piazza-san-pietro", "/quiz/rome-piazza-san-pietro",
+  "/spot/rome-san-pietro", "/quiz/rome-san-pietro",
+  "/spot/rome-castel-santangelo", "/quiz/rome-castel-santangelo",
+  "/spot/rome-ponte-santangelo", "/quiz/rome-ponte-santangelo",
+  "/spot/rome-isola-tiberina", "/quiz/rome-isola-tiberina",
+  "/spot/rome-santa-maria-maggiore", "/quiz/rome-santa-maria-maggiore",
+  "/spot/rome-san-clemente", "/quiz/rome-san-clemente",
 ];
 
-// Install: precache shell
+// Install: precache shell and all pages
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => cache.addAll(PRECACHE_URLS))
