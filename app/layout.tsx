@@ -36,6 +36,11 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-cream text-ink">
         <main className="flex-1 max-w-lg mx-auto w-full pb-20">{children}</main>
         <BottomNav />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `if("serviceWorker"in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("/sw.js"))`,
+          }}
+        />
       </body>
     </html>
   );
