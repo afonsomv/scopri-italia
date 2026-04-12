@@ -1,7 +1,7 @@
 import { Spot } from "@/lib/types";
 
 export const romeSpots: Spot[] = [
-  // Day 1 - Arrival + evening walk
+  // Day 2 - Afternoon in Trastevere (after Aventino/Piramide)
   {
     id: "rome-trastevere",
     citySlug: "rome",
@@ -16,7 +16,7 @@ export const romeSpots: Spot[] = [
       "The basilica of Santa Maria in Trastevere is believed to be the first church in Rome officially dedicated to the Virgin Mary",
       "Despite its tourist fame, many alleys still feel like a medieval village frozen in time",
     ],
-    timeSlot: "17:00",
+    timeSlot: "16:40",
     challenges: [
       {
         id: "rome-trastevere-c1",
