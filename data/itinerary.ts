@@ -49,6 +49,18 @@ export const daySchedule: Record<string, DayInfo[]> = {
       spotIds: ["lucca-duomo", "lucca-san-frediano"],
     },
   ],
+  florence: [
+    {
+      day: 3,
+      date: "Apr 17",
+      label: "Day 3 — Florence Sprint (~2h)",
+      spotIds: [
+        "florence-duomo",
+        "florence-signoria",
+        "florence-ponte-vecchio",
+      ],
+    },
+  ],
   siena: [
     {
       day: 3,
@@ -59,19 +71,15 @@ export const daySchedule: Record<string, DayInfo[]> = {
         "siena-torre-mangia",
         "siena-palazzo-pubblico",
         "siena-duomo",
-        "siena-cripta",
-        "siena-opera-duomo",
         "siena-san-domenico",
         "siena-fortezza",
       ],
     },
-  ],
-  "san-gimignano": [
     {
       day: 4,
       date: "Apr 18",
-      label: "Day 4 — Morning",
-      spotIds: ["sg-cisterna", "sg-collegiata", "sg-torre-grossa"],
+      label: "Day 4 — Last Morning in Siena",
+      spotIds: ["siena-cripta", "siena-opera-duomo"],
     },
   ],
   rome: [
@@ -140,22 +148,22 @@ export const cities: City[] = [
     emoji: "🏰",
   },
   {
+    slug: "florence",
+    name: "Firenze",
+    country: "Italy",
+    tagline: "The cradle of the Renaissance — and Ezio's hometown",
+    day: 3,
+    date: "Apr 17",
+    emoji: "🎨",
+  },
+  {
     slug: "siena",
     name: "Siena",
     country: "Italy",
     tagline: "Medieval rival of Florence",
     day: 3,
-    date: "Apr 17",
+    date: "Apr 17-18",
     emoji: "🐎",
-  },
-  {
-    slug: "san-gimignano",
-    name: "San Gimignano",
-    country: "Italy",
-    tagline: "The Manhattan of the Middle Ages",
-    day: 4,
-    date: "Apr 18",
-    emoji: "🗼",
   },
   {
     slug: "rome",

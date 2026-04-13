@@ -1,5 +1,6 @@
 import { GameState } from "@/lib/types";
 import { getSpotsByCity, allSpots } from "@/data/spots";
+import { ALL_QUIZZES } from "@/data/quizzes";
 
 export interface Badge {
   id: string;
@@ -53,17 +54,17 @@ export const badges: Badge[] = [
     category: "city",
   },
   {
+    id: "florence-complete",
+    name: "Florentine Renaissance",
+    description: "Complete all Florence spots.",
+    icon: "\uD83C\uDFA8",
+    category: "city",
+  },
+  {
     id: "siena-complete",
     name: "Sienese Expert",
     description: "Complete all Siena spots.",
     icon: "\uD83D\uDC0E",
-    category: "city",
-  },
-  {
-    id: "san-gimignano-complete",
-    name: "Tower Master",
-    description: "Complete all San Gimignano spots.",
-    icon: "\uD83D\uDDFC",
     category: "city",
   },
   {
@@ -72,6 +73,20 @@ export const badges: Badge[] = [
     description: "Complete all Rome spots.",
     icon: "\uD83C\uDFDB\uFE0F",
     category: "city",
+  },
+  {
+    id: "ac-florence-complete",
+    name: "Auditore Heir",
+    description: "Complete all 3 Assassin's Creed bonus quizzes in Florence.",
+    icon: "\uD83D\uDDE1\uFE0F",
+    category: "skill",
+  },
+  {
+    id: "ac-rome-complete",
+    name: "Mentor of Rome",
+    description: "Complete all 6 Assassin's Creed Brotherhood bonus quizzes in Rome.",
+    icon: "\uD83D\uDDE1\uFE0F",
+    category: "skill",
   },
   {
     id: "grand-tourist",
@@ -132,8 +147,8 @@ export function getUnlockedBadgeIds(state: GameState): string[] {
   const cityBadgeMap: Record<string, string> = {
     pisa: "pisa-complete",
     lucca: "lucca-complete",
+    florence: "florence-complete",
     siena: "siena-complete",
-    "san-gimignano": "san-gimignano-complete",
     rome: "rome-complete",
   };
 
@@ -166,6 +181,20 @@ export function getUnlockedBadgeIds(state: GameState): string[] {
   const totalSpots = Object.values(allSpots).reduce((sum, spots) => sum + spots.length, 0);
   if (totalSpots > 0 && completedSpots.length / totalSpots >= 0.5) {
     unlocked.push("halfway");
+  }
+
+  // AC bonus city completions — keyed by quiz slug, not spotId
+  const allBonusCompleted = (theme: "ac-florence" | "ac-rome") => {
+    const quizzes = ALL_QUIZZES.filter((q) => q.bonusTheme === theme);
+    if (quizzes.length === 0) return false;
+    return quizzes.every((q) => progress[q.slug ?? q.spotId]?.completed);
+  };
+
+  if (allBonusCompleted("ac-florence")) {
+    unlocked.push("ac-florence-complete");
+  }
+  if (allBonusCompleted("ac-rome")) {
+    unlocked.push("ac-rome-complete");
   }
 
   return unlocked;

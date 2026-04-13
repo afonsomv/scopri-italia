@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { getProfile, saveProfile, resetProgress, getGameState } from "@/lib/progress";
+import { isDevUnlocked, setDevUnlock } from "@/lib/bonus";
 import ProfileAvatar, { avatars } from "@/components/ProfileAvatar";
 
 export default function ProfilePage() {
@@ -13,6 +14,7 @@ export default function ProfilePage() {
   const [isEditing, setIsEditing] = useState(false);
   const [showResetConfirm, setShowResetConfirm] = useState(false);
   const [hasProgress, setHasProgress] = useState(false);
+  const [devUnlock, setDevUnlockState] = useState(false);
 
   useEffect(() => {
     const existing = getProfile();
@@ -27,7 +29,14 @@ export default function ProfilePage() {
       k.startsWith("facts-revealed-")
     );
     setHasProgress(hasQuizProgress || hasRevealedFacts);
+    setDevUnlockState(isDevUnlocked());
   }, []);
+
+  const handleToggleDevUnlock = () => {
+    const next = !devUnlock;
+    setDevUnlock(next);
+    setDevUnlockState(next);
+  };
 
   const handleReset = () => {
     resetProgress();
@@ -92,6 +101,34 @@ export default function ProfilePage() {
       >
         {isEditing ? "Save Changes" : "Start Exploring →"}
       </button>
+
+      {/* Dev: unlock AC bonus quizzes */}
+      {isEditing && (
+        <div className="mt-8 pt-6 border-t border-warm-white">
+          <label className="text-sm font-semibold text-stone uppercase tracking-wide mb-2 block">
+            Developer
+          </label>
+          <button
+            onClick={handleToggleDevUnlock}
+            className={`w-full p-3.5 rounded-xl border-2 text-sm font-medium transition-all flex items-center justify-between ${
+              devUnlock
+                ? "bg-ac-florence/10 border-ac-florence/40 text-ac-florence"
+                : "bg-white border-warm-white text-ink-light hover:border-stone-light/40"
+            }`}
+          >
+            <span className="flex items-center gap-2">
+              <span>{devUnlock ? "🗡️" : "🔒"}</span>
+              <span>Unlock AC Bonus Quizzes</span>
+            </span>
+            <span className={`text-xs font-bold uppercase tracking-wider ${devUnlock ? "text-ac-florence" : "text-stone-light"}`}>
+              {devUnlock ? "ON" : "OFF"}
+            </span>
+          </button>
+          <p className="text-xs text-stone-light mt-2 leading-relaxed">
+            Force-unlocks all AC bonus quizzes for testing. Also accepts <code className="text-ac-rome">?unlockAC=1</code> in the URL for a session-only bypass.
+          </p>
+        </div>
+      )}
 
       {/* Reset progress */}
       {isEditing && hasProgress && (

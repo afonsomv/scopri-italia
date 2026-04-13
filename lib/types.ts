@@ -42,8 +42,20 @@ export interface QuizQuestion {
   explanation: string;
 }
 
+export type BonusTheme = "ac-florence" | "ac-rome";
+
 export interface QuizSet {
   spotId: string;
+  /**
+   * Unique slug used in URLs and progress tracking.
+   * Defaults to `spotId` for standard quizzes.
+   * Bonus quizzes use `${spotId}-ac` (or similar) so they have separate progress.
+   */
+  slug?: string;
+  /** When set, this is a bonus quiz with its own visual treatment and unlock logic. */
+  bonusTheme?: BonusTheme;
+  /** Display title override (defaults to the spot's name). */
+  title?: string;
   questions: QuizQuestion[];
 }
 

@@ -4,21 +4,32 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { cities, daySchedule } from "@/data/itinerary";
 import { getSpotById } from "@/data/spots";
+import { getBonusQuizzesForCity, quizSlug } from "@/data/quizzes";
 import { getGameState, getCityProgress } from "@/lib/progress";
-import { SpotProgress } from "@/lib/types";
+import {
+  applyUnlockQueryParam,
+  isBonusUnlocked,
+  bonusThemeStyles,
+} from "@/lib/bonus";
+import { GameState, SpotProgress } from "@/lib/types";
 import SpotCard from "@/components/SpotCard";
+import BonusQuizCard from "@/components/BonusQuizCard";
 import ProgressRing from "@/components/ProgressRing";
 
 export default function CityPageClient({ slug }: { slug: string }) {
   const [progressMap, setProgressMap] = useState<Record<string, SpotProgress>>({});
+  const [gameState, setGameState] = useState<GameState | null>(null);
 
   const city = cities.find((c) => c.slug === slug);
   const days = daySchedule[slug] ?? [];
   const allSpotIds = days.flatMap((d) => d.spotIds);
+  const bonusQuizzes = getBonusQuizzesForCity(slug);
 
   useEffect(() => {
+    applyUnlockQueryParam();
     const state = getGameState();
     setProgressMap(state.progress);
+    setGameState(state);
   }, []);
 
   if (!city) {
@@ -33,6 +44,8 @@ export default function CityPageClient({ slug }: { slug: string }) {
   }
 
   const cityProgress = getCityProgress(slug, allSpotIds);
+  const bonusTheme = bonusQuizzes[0]?.bonusTheme;
+  const bonusStyles = bonusTheme ? bonusThemeStyles[bonusTheme] : null;
 
   return (
     <div className="px-4 py-6 animate-fade-in">
@@ -99,6 +112,35 @@ export default function CityPageClient({ slug }: { slug: string }) {
           </div>
         );
       })}
+
+      {/* AC Bonus section */}
+      {bonusQuizzes.length > 0 && bonusStyles && (
+        <div className="mb-6 mt-8">
+          <div className="flex items-center gap-2 mb-1">
+            <span className="text-base">{bonusStyles.icon}</span>
+            <h2 className={`text-sm font-bold uppercase tracking-wide ${bonusStyles.accent}`}>
+              {bonusStyles.label}
+            </h2>
+          </div>
+          <p className="text-xs text-stone-light mb-3">
+            Assassin&apos;s Creed–themed bonus quizzes — locked until you earn them.
+          </p>
+          <div className="space-y-2.5">
+            {bonusQuizzes.map((q) => {
+              const slug = quizSlug(q);
+              const unlocked = gameState ? isBonusUnlocked(q, gameState) : false;
+              return (
+                <BonusQuizCard
+                  key={slug}
+                  quiz={q}
+                  unlocked={unlocked}
+                  progress={progressMap[slug] ?? null}
+                />
+              );
+            })}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

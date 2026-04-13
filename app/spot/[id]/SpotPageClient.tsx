@@ -3,8 +3,10 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { getSpotById } from "@/data/spots";
+import { getQuizzesForSpot, quizSlug } from "@/data/quizzes";
 import { getSpotProgress, toggleChallenge, getGameState } from "@/lib/progress";
-import { SpotProgress } from "@/lib/types";
+import { isBonusUnlocked, bonusThemeStyles, bonusUnlockHint } from "@/lib/bonus";
+import { SpotProgress, GameState } from "@/lib/types";
 
 const challengeTypeIcons: Record<string, string> = {
   find: "🔍",
@@ -15,14 +17,18 @@ const challengeTypeIcons: Record<string, string> = {
 
 export default function SpotPageClient({ id }: { id: string }) {
   const [progress, setProgress] = useState<SpotProgress | null>(null);
+  const [gameState, setGameState] = useState<GameState | null>(null);
   const [loaded, setLoaded] = useState(false);
   const [expandedHint, setExpandedHint] = useState<string | null>(null);
   const [revealedFacts, setRevealedFacts] = useState<Set<number>>(new Set());
 
   const spot = getSpotById(id);
+  const quizzes = getQuizzesForSpot(id);
+  const bonusQuiz = quizzes.find((q) => q.bonusTheme);
 
   useEffect(() => {
     setProgress(getSpotProgress(id));
+    setGameState(getGameState());
     const stored = localStorage.getItem(`facts-revealed-${id}`);
     if (stored) setRevealedFacts(new Set(JSON.parse(stored)));
     setLoaded(true);
@@ -219,6 +225,42 @@ export default function SpotPageClient({ id }: { id: string }) {
       >
         {progress?.completed ? "Retake Quiz" : "Start Quiz →"}
       </Link>
+
+      {/* Bonus AC Quiz CTA */}
+      {loaded && bonusQuiz && bonusQuiz.bonusTheme && (() => {
+        const styles = bonusThemeStyles[bonusQuiz.bonusTheme];
+        const slug = quizSlug(bonusQuiz);
+        const bonusProgress = gameState?.progress[slug] ?? null;
+        const unlocked = gameState ? isBonusUnlocked(bonusQuiz, gameState) : false;
+
+        if (!unlocked) {
+          return (
+            <div
+              className={`mt-3 w-full text-center py-4 rounded-2xl border-2 border-dashed ${styles.border} bg-warm-white/40 opacity-80`}
+            >
+              <div className="text-xs font-bold uppercase tracking-wider mb-1 flex items-center justify-center gap-1.5">
+                <span>🔒</span>
+                <span className={styles.accent}>{styles.label}</span>
+              </div>
+              <p className="text-xs text-stone-light px-4">
+                {bonusUnlockHint(bonusQuiz.bonusTheme)}
+              </p>
+            </div>
+          );
+        }
+
+        return (
+          <Link
+            href={`/quiz/${slug}`}
+            className={`mt-3 block w-full text-center py-4 rounded-2xl font-semibold text-sm transition-all active:scale-[0.98] border-2 ${styles.border} bg-white hover:shadow-sm`}
+          >
+            <span className="mr-1.5">{styles.icon}</span>
+            <span className={styles.accent}>
+              {bonusProgress?.completed ? "Retake AC Bonus" : `Start ${styles.label} →`}
+            </span>
+          </Link>
+        );
+      })()}
     </div>
   );
 }

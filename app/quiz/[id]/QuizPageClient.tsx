@@ -4,8 +4,9 @@ import { useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { getSpotById } from "@/data/spots";
-import { getQuizBySpotId } from "@/data/quizzes";
+import { getQuizBySlug } from "@/data/quizzes";
 import { saveQuizResult } from "@/lib/progress";
+import { isBonusUnlocked, bonusThemeStyles } from "@/lib/bonus";
 import { QuizQuestion as QuizQuestionType } from "@/lib/types";
 import QuizQuestion from "@/components/QuizQuestion";
 
@@ -30,8 +31,8 @@ export default function QuizPageClient({ id }: { id: string }) {
   const [bestStreak, setBestStreak] = useState(0);
   const [finished, setFinished] = useState(false);
 
-  const spot = getSpotById(id);
-  const quiz = getQuizBySpotId(id);
+  const quiz = getQuizBySlug(id);
+  const spot = quiz ? getSpotById(quiz.spotId) : undefined;
   const shuffledQuestions = useMemo(
     () => quiz?.questions.map(shuffleQuestion) ?? [],
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -44,6 +45,29 @@ export default function QuizPageClient({ id }: { id: string }) {
         <p className="text-stone-light">Quiz not found</p>
         <Link href="/" className="text-terracotta text-sm mt-2 inline-block">
           ← Back home
+        </Link>
+      </div>
+    );
+  }
+
+  // Block direct URL access to a locked bonus quiz
+  if (quiz.bonusTheme && !isBonusUnlocked(quiz)) {
+    const styles = bonusThemeStyles[quiz.bonusTheme];
+    return (
+      <div className="px-4 py-6 text-center animate-fade-in">
+        <div className="text-5xl mt-12 mb-4">🔒</div>
+        <h1 className="text-xl font-bold text-ink mb-2">Bonus Quiz Locked</h1>
+        <p className={`text-sm font-medium mb-1 ${styles.accent}`}>
+          {styles.label}
+        </p>
+        <p className="text-sm text-ink-light max-w-xs mx-auto mb-6">
+          Complete the requirements first — then come back to claim this bonus.
+        </p>
+        <Link
+          href={`/spot/${spot.id}`}
+          className="inline-block px-5 py-3 rounded-2xl bg-terracotta text-white font-semibold text-sm hover:bg-terracotta/90 transition-colors"
+        >
+          Back to {spot.name}
         </Link>
       </div>
     );
