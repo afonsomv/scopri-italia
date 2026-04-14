@@ -17,6 +17,7 @@ interface MealEntry {
   label: "Lunch" | "Dinner";
   time: string;
   city: string;
+  citySlug: string;
 }
 interface TravelEntry {
   type: "travel";
@@ -56,7 +57,7 @@ const DAYS: TimelineDay[] = [
       { type: "note", text: "Fly in — arrive Pisa", time: "~15:00", emoji: "✈️" },
       { type: "note", text: "Check in & freshen up", emoji: "🏨" },
       { type: "note", text: "Evening stroll around Campo dei Miracoli", time: "~18:00", emoji: "🚶" },
-      { type: "meal", label: "Dinner", time: "20:00", city: "Pisa" },
+      { type: "meal", label: "Dinner", time: "20:00", city: "Pisa", citySlug: "pisa" },
     ],
   },
   {
@@ -72,14 +73,14 @@ const DAYS: TimelineDay[] = [
       { type: "spot", spotId: "pisa-camposanto", time: "10:50" },
       { type: "spot", spotId: "pisa-cavalieri", time: "11:30" },
       { type: "spot", spotId: "pisa-spina", time: "11:50" },
-      { type: "meal", label: "Lunch", time: "13:00", city: "Pisa" },
+      { type: "meal", label: "Lunch", time: "13:00", city: "Pisa", citySlug: "pisa" },
       { type: "travel", from: "Pisa", to: "Lucca", duration: "~30 min", time: "14:00" },
       { type: "spot", spotId: "lucca-muralhas", time: "14:30" },
       { type: "spot", spotId: "lucca-anfiteatro", time: "15:10" },
       { type: "spot", spotId: "lucca-guinigi", time: "15:45" },
       { type: "spot", spotId: "lucca-torre-ore", time: "16:15" },
       { type: "spot", spotId: "lucca-san-michele", time: "16:45" },
-      { type: "meal", label: "Dinner", time: "20:00", city: "Lucca" },
+      { type: "meal", label: "Dinner", time: "20:00", city: "Lucca", citySlug: "lucca" },
     ],
   },
   {
@@ -95,7 +96,7 @@ const DAYS: TimelineDay[] = [
       { type: "spot", spotId: "florence-duomo", time: "11:30" },
       { type: "spot", spotId: "florence-signoria", time: "12:00" },
       { type: "spot", spotId: "florence-ponte-vecchio", time: "12:30" },
-      { type: "meal", label: "Lunch", time: "13:00", city: "Florence" },
+      { type: "meal", label: "Lunch", time: "13:00", city: "Florence", citySlug: "florence" },
       { type: "travel", from: "Florence", to: "Siena", duration: "~1 h 15 min", time: "14:30" },
       { type: "spot", spotId: "siena-campo", time: "15:45" },
       { type: "spot", spotId: "siena-torre-mangia", time: "16:15" },
@@ -103,7 +104,7 @@ const DAYS: TimelineDay[] = [
       { type: "spot", spotId: "siena-duomo", time: "17:30" },
       { type: "spot", spotId: "siena-san-domenico", time: "18:15" },
       { type: "spot", spotId: "siena-fortezza", time: "18:45" },
-      { type: "meal", label: "Dinner", time: "20:00", city: "Siena" },
+      { type: "meal", label: "Dinner", time: "20:00", city: "Siena", citySlug: "siena" },
     ],
   },
   {
@@ -115,12 +116,12 @@ const DAYS: TimelineDay[] = [
     entries: [
       { type: "spot", spotId: "siena-cripta", time: "09:00" },
       { type: "spot", spotId: "siena-opera-duomo", time: "10:00" },
-      { type: "meal", label: "Lunch", time: "12:30", city: "Siena" },
+      { type: "meal", label: "Lunch", time: "12:30", city: "Siena", citySlug: "siena" },
       { type: "travel", from: "Siena", to: "Rome", duration: "~3 h", time: "14:00" },
       { type: "note", text: "Check in — Rome", time: "17:30", emoji: "🏨" },
       { type: "spot", spotId: "rome-trevi", time: "18:30" },
       { type: "spot", spotId: "rome-piazza-spagna", time: "19:00" },
-      { type: "meal", label: "Dinner", time: "20:00", city: "Rome" },
+      { type: "meal", label: "Dinner", time: "20:00", city: "Rome", citySlug: "rome" },
       { type: "spot", spotId: "rome-pantheon", time: "21:30" },
       { type: "spot", spotId: "rome-navona", time: "22:00" },
       { type: "spot", spotId: "rome-campo-fiori", time: "22:30" },
@@ -138,7 +139,7 @@ const DAYS: TimelineDay[] = [
       { type: "spot", spotId: "rome-foro-romano", time: "10:45" },
       { type: "spot", spotId: "rome-palatino", time: "11:30" },
       { type: "spot", spotId: "rome-vittoriano", time: "12:30" },
-      { type: "meal", label: "Lunch", time: "13:00", city: "Rome" },
+      { type: "meal", label: "Lunch", time: "13:00", city: "Rome", citySlug: "rome" },
       { type: "spot", spotId: "rome-bocca-verita", time: "14:30" },
       { type: "spot", spotId: "rome-circo-massimo", time: "15:00" },
       { type: "spot", spotId: "rome-giardino-aranci", time: "15:30" },
@@ -147,7 +148,7 @@ const DAYS: TimelineDay[] = [
       { type: "spot", spotId: "rome-piramide", time: "17:00" },
       { type: "spot", spotId: "rome-trastevere", time: "17:30" },
       { type: "spot", spotId: "rome-gianicolo", time: "18:30" },
-      { type: "meal", label: "Dinner", time: "20:00", city: "Rome" },
+      { type: "meal", label: "Dinner", time: "20:00", city: "Rome", citySlug: "rome" },
     ],
   },
   {
@@ -161,10 +162,10 @@ const DAYS: TimelineDay[] = [
       { type: "spot", spotId: "rome-san-pietro", time: "09:00" },
       { type: "spot", spotId: "rome-castel-santangelo", time: "11:00" },
       { type: "spot", spotId: "rome-ponte-santangelo", time: "12:00" },
-      { type: "meal", label: "Lunch", time: "13:00", city: "Rome" },
+      { type: "meal", label: "Lunch", time: "13:00", city: "Rome", citySlug: "rome" },
       { type: "spot", spotId: "rome-portico-ottavia", time: "14:30" },
       { type: "spot", spotId: "rome-isola-tiberina", time: "15:00" },
-      { type: "meal", label: "Dinner", time: "20:00", city: "Rome" },
+      { type: "meal", label: "Dinner", time: "20:00", city: "Rome", citySlug: "rome" },
     ],
   },
   {
@@ -176,7 +177,7 @@ const DAYS: TimelineDay[] = [
     entries: [
       { type: "spot", spotId: "rome-santa-maria-maggiore", time: "09:00" },
       { type: "spot", spotId: "rome-san-clemente", time: "10:00" },
-      { type: "meal", label: "Lunch", time: "12:30", city: "Rome" },
+      { type: "meal", label: "Lunch", time: "12:30", city: "Rome", citySlug: "rome" },
       { type: "note", text: "Head to airport — arrivederci!", time: "15:00", emoji: "✈️" },
     ],
   },
@@ -242,20 +243,20 @@ function SpotRow({ entry }: { entry: SpotEntry }) {
 function MealRow({ entry }: { entry: MealEntry }) {
   const isLunch = entry.label === "Lunch";
   return (
-    <div className="flex items-center gap-3">
-      <div className="w-8 h-8 rounded-full bg-gold-light/40 border-2 border-gold/40 flex items-center justify-center text-sm">
+    <Link href={`/food#${entry.citySlug}`} className="flex items-center gap-3 group">
+      <div className="w-8 h-8 rounded-full bg-gold-light/40 border-2 border-gold/40 flex items-center justify-center text-sm group-hover:border-gold transition-colors">
         {isLunch ? "🍝" : "🍷"}
       </div>
       <div className="flex-1 pb-4">
         <div className="flex items-baseline justify-between gap-2">
-          <span className="font-medium text-gold text-sm">
+          <span className="font-medium text-gold text-sm group-hover:text-terracotta transition-colors">
             {entry.label} — {entry.city}
           </span>
           <span className="text-xs text-stone-light">{entry.time}</span>
         </div>
-        <p className="text-xs text-stone-light mt-0.5">Placeholder — restaurant TBD</p>
+        <p className="text-xs text-terracotta/60 mt-0.5">See suggestions →</p>
       </div>
-    </div>
+    </Link>
   );
 }
 

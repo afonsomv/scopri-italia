@@ -55,6 +55,14 @@ A gamified travel companion PWA for learning Italian history through interactive
 - Current and best streak tracking
 - Completion badges on spots and cities
 
+### Food Guide
+- Curated restaurant, pizzeria, gelateria, cafe, and street food suggestions per city
+- Sourced from the trip's Notion planning — real picks, not generic recommendations
+- Filter by type: Restaurants, Pizza, Gelato & Coffee, Street Food
+- Each spot shows price range (€/€€/€€€), nearest landmark, and what to try
+- Linked from timeline meal entries — tap "See suggestions" to jump to the relevant city
+- Cities covered: Pisa, Lucca, Firenze, Siena, Roma (28 spots total)
+
 ### Itinerary Timeline
 - Full day-by-day timeline for all 7 days (Apr 15–21)
 - Horizontal day selector with today auto-highlighted
@@ -101,6 +109,7 @@ Open [http://localhost:3000](http://localhost:3000) on your phone or browser.
 app/
   page.tsx              # Home dashboard (cities + stats)
   timeline/page.tsx     # Day-by-day itinerary timeline
+  food/page.tsx         # Food guide (restaurants, gelato, cafes per city)
   badges/page.tsx       # Trophy room (badge collection grid)
   profile/page.tsx      # Profile setup (name + avatar)
   city/[slug]/page.tsx  # City detail (spots by day + progress)
@@ -137,6 +146,7 @@ lib/
 |-------|-------------|
 | `/` | Home dashboard with city cards and total stats |
 | `/timeline` | Day-by-day itinerary with spots, meals, and drives |
+| `/food` | Food guide — restaurants, gelato, cafes per city |
 | `/profile` | Create/edit profile, reset progress |
 | `/city/[slug]` | City overview with spots grouped by day |
 | `/spot/[id]` | Spot detail with history, facts, and challenges |
@@ -157,6 +167,13 @@ Italian heritage color palette:
 Custom animations: fade-in, correct answer pulse, wrong answer shake, streak pop.
 
 ## Changelog
+
+### v1.8.0 — Food Guide (2026-04-14)
+- New `/food` page with 28 curated food spots across all 5 cities
+- Data sourced from Notion trip planning — restaurants, trattorias, pizzerias, street food, gelaterias, cafes, and markets
+- Filter chips: All, Restaurants, Pizza, Gelato & Coffee, Street Food
+- Each entry shows type badge, price range, nearest landmark, and signature dish
+- Timeline meal entries now link to `/food#city` with "See suggestions" prompt
 
 ### v1.7.0 — Itinerary Timeline (2026-04-14)
 - New `/timeline` page with a full 7-day day-by-day timeline (Apr 15–21)
