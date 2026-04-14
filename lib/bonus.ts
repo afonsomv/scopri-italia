@@ -3,8 +3,7 @@
 /**
  * Unlock logic for AC-themed bonus quizzes.
  *
- * Florence: all 3 standard Florence quizzes must be completed → all 3 AC quizzes unlock together.
- * Rome: per-spot — each Rome AC quiz unlocks when the matching standard quiz is complete.
+ * Both Florence and Rome: per-spot — each AC quiz unlocks when the matching standard quiz is complete.
  *
  * Two bypass mechanisms exist for testing:
  *   • localStorage flag `dev-unlock-ac` = "1"  (toggle from the profile page)
@@ -17,12 +16,6 @@ import { getGameState } from "./progress";
 const DEV_FLAG_KEY = "dev-unlock-ac";
 const SESSION_FLAG_KEY = "session-unlock-ac";
 const QUERY_PARAM = "unlockAC";
-
-export const FLORENCE_REQUIRED_SPOTS = [
-  "florence-duomo",
-  "florence-signoria",
-  "florence-ponte-vecchio",
-];
 
 /** Returns true when AC quizzes should be force-unlocked for testing. */
 export function isDevUnlocked(): boolean {
@@ -57,14 +50,8 @@ export function isBonusUnlocked(quiz: QuizSet, state?: GameState): boolean {
 
   const s = state ?? getGameState();
 
-  if (quiz.bonusTheme === "ac-florence") {
-    return FLORENCE_REQUIRED_SPOTS.every(
-      (id) => s.progress[id]?.completed === true
-    );
-  }
-
-  if (quiz.bonusTheme === "ac-rome") {
-    // The standard quiz lives at quiz.spotId
+  if (quiz.bonusTheme === "ac-florence" || quiz.bonusTheme === "ac-rome") {
+    // Per-spot: each AC quiz unlocks when the matching standard quiz is complete
     return s.progress[quiz.spotId]?.completed === true;
   }
 
@@ -75,7 +62,7 @@ export function isBonusUnlocked(quiz: QuizSet, state?: GameState): boolean {
 export function bonusUnlockHint(theme: BonusTheme): string {
   switch (theme) {
     case "ac-florence":
-      return "Complete all 3 Florence quizzes to unlock the Assassin's Creed bonus.";
+      return "Complete the standard quiz for this spot to unlock its AC II bonus.";
     case "ac-rome":
       return "Complete the standard quiz for this spot to unlock its AC Brotherhood bonus.";
   }

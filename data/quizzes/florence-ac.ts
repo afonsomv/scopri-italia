@@ -5,7 +5,7 @@ import { QuizSet } from "@/lib/types";
  * Renaissance Florence. Questions blend real history and game lore, since AC2
  * sticks closer to the historical record than most people remember.
  *
- * Unlock condition: all three standard Florence quizzes complete.
+ * Unlock condition: per-spot — each AC quiz unlocks when its matching standard quiz is complete.
  */
 export const florenceAcQuizzes: QuizSet[] = [
   {

@@ -18,7 +18,10 @@ export default function BonusQuizCard({
   const styles = bonusThemeStyles[quiz.bonusTheme];
   const spot = getSpotById(quiz.spotId);
   const slug = quiz.slug ?? quiz.spotId;
-  const title = quiz.title ?? spot?.name ?? quiz.spotId;
+  const fullTitle = quiz.title ?? spot?.name ?? quiz.spotId;
+  const [title, subtitle] = fullTitle.includes(" — ")
+    ? fullTitle.split(" — ", 2)
+    : [fullTitle, spot?.name ?? null];
   const isCompleted = progress?.completed;
 
   if (!unlocked) {
@@ -36,7 +39,7 @@ export default function BonusQuizCard({
             </h3>
           </div>
           <p className="text-xs text-stone-light truncate">
-            {bonusUnlockHint(quiz.bonusTheme)}
+            {subtitle ? `${subtitle} · ` : ""}{bonusUnlockHint(quiz.bonusTheme)}
           </p>
         </div>
         <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-full ${styles.badge}`}>
@@ -63,7 +66,7 @@ export default function BonusQuizCard({
           {isCompleted && <span className="text-xs flex-shrink-0">✅</span>}
         </div>
         <p className="text-xs text-ink-light truncate">
-          {styles.label} · {quiz.questions.length} questions
+          {subtitle ? `${subtitle} · ` : ""}{quiz.questions.length} questions
         </p>
       </div>
 
