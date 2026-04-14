@@ -198,7 +198,12 @@ function spotTypeEmoji(type: Spot["type"]): string {
   return map[type] ?? "📍";
 }
 
-function getTodayDayIndex(): number {
+function getDefaultDayIndex(): number {
+  const stored = typeof window !== "undefined" ? sessionStorage.getItem("timeline-day") : null;
+  if (stored !== null) {
+    const n = Number(stored);
+    if (n >= 0 && n < DAYS.length) return n;
+  }
   const todayISO = new Date().toISOString().slice(0, 10);
   const idx = DAYS.findIndex((d) => d.dateISO === todayISO);
   return idx >= 0 ? idx : 0;
@@ -294,8 +299,12 @@ function NoteRow({ entry }: { entry: NoteEntry }) {
 // ── Main page ──────────────────────────────────────────────────────────────
 
 export default function TimelinePage() {
-  const todayIdx = getTodayDayIndex();
-  const [activeIdx, setActiveIdx] = useState(todayIdx);
+  const [activeIdx, setActiveIdx] = useState(getDefaultDayIndex);
+
+  function selectDay(idx: number) {
+    setActiveIdx(idx);
+    sessionStorage.setItem("timeline-day", String(idx));
+  }
   const day = DAYS[activeIdx];
 
   const isTodayActive = DAYS[activeIdx].dateISO === new Date().toISOString().slice(0, 10);
@@ -316,7 +325,7 @@ export default function TimelinePage() {
           return (
             <button
               key={d.day}
-              onClick={() => setActiveIdx(idx)}
+              onClick={() => selectDay(idx)}
               className={`flex-none flex flex-col items-center px-3 py-2 rounded-xl border transition-all ${
                 isActive
                   ? "bg-terracotta text-white border-terracotta"
