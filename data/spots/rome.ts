@@ -49,7 +49,7 @@ export const romeSpots: Spot[] = [
       "The fountain is fed by a 2,000-year-old aqueduct that still works — one of the few ancient Roman water systems still in use",
       "Fellini had to use warm water during filming because Anita Ekberg refused to enter cold water at night",
     ],
-    timeSlot: "18:30",
+    timeSlot: "16:55",
     challenges: [
       {
         id: "rome-trevi-c1",
@@ -82,7 +82,7 @@ export const romeSpots: Spot[] = [
       "Raphael is buried here — his epitaph reads 'Here lies Raphael, by whom Nature feared to be outdone while he lived, and when he died, feared she herself would die'",
       "The concrete in the dome gets progressively lighter toward the top, using pumice stone instead of rock — ancient Roman engineering genius",
     ],
-    timeSlot: "19:30",
+    timeSlot: "17:45",
     challenges: [
       {
         id: "rome-pantheon-c1",
@@ -115,7 +115,7 @@ export const romeSpots: Spot[] = [
       "Remains of Domitian's stadium are still visible underground, accessible beneath the north end of the piazza",
       "The Egyptian obelisk in the center was actually made in Rome — it's a Roman copy carved for a temple of Isis",
     ],
-    timeSlot: "19:50",
+    timeSlot: "18:00",
     challenges: [
       {
         id: "rome-navona-c1",
@@ -131,6 +131,72 @@ export const romeSpots: Spot[] = [
         title: "The Rival's Glare",
         description:
           "Find the river god that appears to shield his eyes from Borromini's church facade. Is the legend about their rivalry true?",
+      },
+    ],
+  },
+  {
+    id: "rome-piazza-spagna",
+    citySlug: "rome",
+    name: "Piazza di Spagna",
+    type: "piazza",
+    tagline: "The most theatrical staircase in Europe — 135 steps of baroque drama",
+    history:
+      "The Spanish Steps were built between 1723 and 1726 to connect the Bourbon Spanish embassy at the bottom to the French church Trinità dei Monti at the top — a diplomatic compromise sculpted in travertine. Designed by Francesco de Sanctis, the 135 steps cascade in a butterfly pattern that was revolutionary for its time. At the base, Bernini's father Pietro created the Fontana della Barcaccia (Fountain of the Ugly Boat), shaped like a half-sunken ship to solve the problem of low water pressure in the area. The surrounding streets became the center of Rome's Grand Tour culture, attracting Keats, Shelley, and Byron.",
+    funFacts: [
+      "John Keats died in a small room overlooking the Steps in 1821 — the building is now a museum dedicated to the Romantic poets",
+      "The 'Barcaccia' fountain is shaped like a leaking boat because the water pressure was too low for a tall fountain — Bernini's father turned a limitation into art",
+      "Sitting on the Steps has been banned since 2019 — violators face fines up to €400",
+      "The Steps were built to connect a Spanish embassy to a French church, making them one of Europe's most elegant diplomatic compromises",
+    ],
+    timeSlot: "17:15",
+    challenges: [
+      {
+        id: "rome-piazza-spagna-c1",
+        type: "find",
+        title: "The Sinking Boat",
+        description:
+          "Find the Fontana della Barcaccia at the base of the Steps. Why is the boat half-sunken?",
+        hint: "The low water pressure in this area meant a traditional tall fountain was impossible — the 'sinking' design was the creative solution",
+      },
+      {
+        id: "rome-piazza-spagna-c2",
+        type: "photo",
+        title: "View From the Top",
+        description:
+          "Climb to the top of the Steps at Trinità dei Monti and take a photo of the panoramic view down over the piazza and across Rome's rooftops.",
+      },
+    ],
+  },
+  {
+    id: "rome-campo-fiori",
+    citySlug: "rome",
+    name: "Campo de' Fiori",
+    type: "piazza",
+    tagline: "A flower market by day, Rome's living room by night — with a dark secret at its center",
+    history:
+      "Campo de' Fiori ('Field of Flowers') was a meadow in the Middle Ages before being paved in the 15th century. Unlike most Roman piazzas, it has no church — instead, it served as a site for public executions. The most famous victim was philosopher Giordano Bruno, burned at the stake here in 1600 for heresy after proposing that the universe was infinite and that stars were distant suns with their own planets. His hooded bronze statue has stood defiantly at the center since 1889, facing the Vatican. By morning the piazza hosts one of Rome's oldest open-air markets, and by night it transforms into a lively social hub.",
+    funFacts: [
+      "Giordano Bruno was burned here in 1600 for suggesting the universe was infinite — the Church only formally expressed 'regret' in 2000, 400 years later",
+      "It is the only major piazza in central Rome without a church, because the Church refused to allow one near a site of papal executions",
+      "The morning flower and food market has been running continuously since 1869",
+      "The statue of Bruno deliberately faces the Vatican as a symbol of intellectual defiance against religious censorship",
+    ],
+    timeSlot: "18:20",
+    challenges: [
+      {
+        id: "rome-campo-fiori-c1",
+        type: "find",
+        title: "The Defiant Philosopher",
+        description:
+          "Find the hooded statue of Giordano Bruno at the center of the piazza. Which direction is he facing — and why?",
+        hint: "He faces the Vatican as a deliberate symbol of intellectual defiance",
+      },
+      {
+        id: "rome-campo-fiori-c2",
+        type: "observe",
+        title: "No Church in Sight",
+        description:
+          "Look around the piazza — unlike every other major square in Rome, there is no church here. Can you figure out why?",
       },
     ],
   },
@@ -261,6 +327,71 @@ export const romeSpots: Spot[] = [
     ],
   },
   {
+    id: "rome-vittoriano",
+    citySlug: "rome",
+    name: "Vittoriano",
+    type: "monument",
+    tagline: "Love it or hate it — this colossal white marble wedding cake united a nation",
+    history:
+      "The Altare della Patria (Altar of the Fatherland) was built between 1885 and 1935 to honor Victor Emmanuel II, the first king of unified Italy. Designed by Giuseppe Sacconi in gleaming white Botticino marble, the monument houses the Tomb of the Unknown Soldier, guarded by an eternal flame since 1921. Romans either love or hate it — critics call it the 'macchina da scrivere' (typewriter) or 'torta nuziale' (wedding cake) because its bombastic neoclassical style clashes with the ancient ruins around it. The rooftop terrace offers a 360-degree panorama rivaling any viewpoint in Rome.",
+    funFacts: [
+      "Romans nicknamed it the 'typewriter' and the 'wedding cake' because of its blocky white marble design that sticks out against the surrounding ochre and terracotta of Rome",
+      "The equestrian statue of Victor Emmanuel II is so large that during construction, 20 workers had dinner inside the horse's belly",
+      "The Botticino marble was chosen specifically because it would NOT darken with age like travertine, keeping the monument blindingly white forever",
+      "The eternal flame at the Tomb of the Unknown Soldier has been burning continuously since 1921 and is guarded 24/7 by soldiers in full dress uniform",
+    ],
+    timeSlot: "13:10",
+    challenges: [
+      {
+        id: "rome-vittoriano-c1",
+        type: "observe",
+        title: "The Eternal Flame",
+        description:
+          "Find the Tomb of the Unknown Soldier and the eternal flame at the base of the monument. Watch the guards in their ceremonial uniforms.",
+      },
+      {
+        id: "rome-vittoriano-c2",
+        type: "photo",
+        title: "Wedding Cake or Masterpiece?",
+        description:
+          "Take a photo that captures the massive scale of the Vittoriano compared to the ancient ruins around it. What do you think — does it fit or clash?",
+      },
+    ],
+  },
+  {
+    id: "rome-bocca-verita",
+    citySlug: "rome",
+    name: "Bocca della Verità",
+    type: "monument",
+    tagline: "Stick your hand in the mouth of truth — if you dare",
+    history:
+      "This ancient marble disc, carved with the face of a river god or possibly the god Oceanus, sits in the portico of the church Santa Maria in Cosmedin. Dating to the 1st century AD, it was probably an ancient drain cover from a nearby temple. Medieval legend transformed it into a lie detector: if you put your hand in the mouth and told a lie, it would bite it off. The legend was immortalized in the 1953 film 'Roman Holiday' when Gregory Peck pretended to lose his hand, terrifying Audrey Hepburn.",
+    funFacts: [
+      "In 'Roman Holiday' (1953), Gregory Peck improvised the scene where he pretends the Mouth bites his hand off — Audrey Hepburn's scream of terror was completely genuine",
+      "It was most likely an ancient manhole cover or drain for a nearby Roman temple, repurposed into a medieval lie detector",
+      "In the Middle Ages, it was rumored that a priest hid behind the disc with a scorpion to sting the hands of suspected liars",
+      "The church Santa Maria in Cosmedin behind it has a beautiful 8th-century interior and a skull said to be that of Saint Valentine",
+    ],
+    timeSlot: "13:30",
+    challenges: [
+      {
+        id: "rome-bocca-verita-c1",
+        type: "photo",
+        title: "Hand in the Mouth",
+        description:
+          "Take a photo with your hand inside the Bocca della Verità — the classic Roman Holiday shot. Are you telling the truth?",
+      },
+      {
+        id: "rome-bocca-verita-c2",
+        type: "find",
+        title: "Saint Valentine's Skull",
+        description:
+          "Step inside the church Santa Maria in Cosmedin and find the relic said to be the skull of Saint Valentine.",
+        hint: "It's displayed in a small chapel on the left side of the church",
+      },
+    ],
+  },
+  {
     id: "rome-circo-massimo",
     citySlug: "rome",
     name: "Circo Massimo",
@@ -274,7 +405,7 @@ export const romeSpots: Spot[] = [
       "The spina (central barrier) held an Egyptian obelisk that now stands in Piazza del Popolo",
       "Ben-Hur's famous chariot race was inspired by the Circus Maximus",
     ],
-    timeSlot: "13:15",
+    timeSlot: "13:35",
     challenges: [
       {
         id: "rome-circo-massimo-c1",

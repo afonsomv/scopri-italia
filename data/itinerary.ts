@@ -87,7 +87,7 @@ export const daySchedule: Record<string, DayInfo[]> = {
       day: 4,
       date: "Apr 18",
       label: "Day 4 — Arrival Evening",
-      spotIds: ["rome-trevi", "rome-pantheon", "rome-navona"],
+      spotIds: ["rome-trevi", "rome-piazza-spagna", "rome-pantheon", "rome-navona", "rome-campo-fiori"],
     },
     {
       day: 5,
@@ -98,6 +98,8 @@ export const daySchedule: Record<string, DayInfo[]> = {
         "rome-arco-constantino",
         "rome-foro-romano",
         "rome-palatino",
+        "rome-vittoriano",
+        "rome-bocca-verita",
         "rome-circo-massimo",
         "rome-giardino-aranci",
         "rome-buco-serratura",

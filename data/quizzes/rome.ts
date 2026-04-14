@@ -190,6 +190,100 @@ export const romeQuizzes: QuizSet[] = [
     ],
   },
   {
+    spotId: "rome-piazza-spagna",
+    questions: [
+      {
+        id: "rome-piazza-spagna-1",
+        spotId: "rome-piazza-spagna",
+        question: "Why is the Fontana della Barcaccia at the base of the Spanish Steps shaped like a sinking boat?",
+        options: [
+          "To commemorate a famous shipwreck",
+          "The water pressure was too low for a tall fountain",
+          "It represents the boat that brought an obelisk from Egypt",
+          "Bernini lost a bet with a rival architect",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Pietro Bernini designed the fountain as a half-sunken boat because the low water pressure from the Acqua Vergine aqueduct couldn't support a tall design — turning a limitation into one of Rome's most charming sculptures.",
+      },
+      {
+        id: "rome-piazza-spagna-2",
+        spotId: "rome-piazza-spagna",
+        question: "Which famous English poet died in a room overlooking the Spanish Steps in 1821?",
+        options: [
+          "Lord Byron",
+          "Percy Bysshe Shelley",
+          "John Keats",
+          "William Wordsworth",
+        ],
+        correctIndex: 2,
+        explanation:
+          "John Keats died of tuberculosis at age 25 in a small room overlooking the Steps. The building, now the Keats-Shelley Memorial House, preserves his death mask and manuscripts.",
+      },
+      {
+        id: "rome-piazza-spagna-3",
+        spotId: "rome-piazza-spagna",
+        question: "The Spanish Steps connect a Spanish embassy at the bottom to what at the top?",
+        options: [
+          "A Roman temple dedicated to Venus",
+          "The Borghese Gallery",
+          "A French church (Trinità dei Monti)",
+          "The Pope's summer residence",
+        ],
+        correctIndex: 2,
+        explanation:
+          "The 135 steps were built between 1723 and 1726 as a diplomatic compromise, connecting the Spanish embassy's piazza to the French church Trinità dei Monti at the summit.",
+      },
+    ],
+  },
+  {
+    spotId: "rome-campo-fiori",
+    questions: [
+      {
+        id: "rome-campo-fiori-1",
+        spotId: "rome-campo-fiori",
+        question: "Who was Giordano Bruno, whose statue stands at the center of Campo de' Fiori?",
+        options: [
+          "A Renaissance painter",
+          "A philosopher burned for heresy in 1600",
+          "The architect who designed the piazza",
+          "A Roman senator who fought Julius Caesar",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Giordano Bruno was a philosopher and cosmologist who proposed that the universe was infinite and that stars were distant suns. He was burned at the stake in Campo de' Fiori on February 17, 1600, by the Roman Inquisition.",
+      },
+      {
+        id: "rome-campo-fiori-2",
+        spotId: "rome-campo-fiori",
+        question: "What makes Campo de' Fiori unique among major piazzas in central Rome?",
+        options: [
+          "It is the oldest piazza in Rome",
+          "It has no church facing it",
+          "It was built by the ancient Romans",
+          "It is the largest piazza in Rome",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Campo de' Fiori is the only major piazza in central Rome without a church. The Church refused to build one near a site associated with papal executions.",
+      },
+      {
+        id: "rome-campo-fiori-3",
+        spotId: "rome-campo-fiori",
+        question: "What does 'Campo de' Fiori' literally mean?",
+        options: [
+          "Field of Heroes",
+          "Field of Flowers",
+          "Field of Fire",
+          "Field of Martyrs",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The name means 'Field of Flowers' — in the Middle Ages, it was a meadow of wildflowers before being paved in the 15th century and becoming one of Rome's most vibrant public spaces.",
+      },
+    ],
+  },
+  {
     spotId: "rome-colosseo",
     questions: [
       {
@@ -388,6 +482,100 @@ export const romeQuizzes: QuizSet[] = [
         correctIndex: 1,
         explanation:
           "The Palatine offers one of Rome's most spectacular viewpoints — looking down over the entire Roman Forum with the Colosseum visible beyond, just as emperors once surveyed their domain.",
+      },
+    ],
+  },
+  {
+    spotId: "rome-vittoriano",
+    questions: [
+      {
+        id: "rome-vittoriano-1",
+        spotId: "rome-vittoriano",
+        question: "What nicknames have Romans given to the Vittoriano because of its design?",
+        options: [
+          "The White Elephant and The Fortress",
+          "The Typewriter and The Wedding Cake",
+          "The Lighthouse and The Iceberg",
+          "The Marble Mountain and The Giant",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Romans nicknamed the monument 'la macchina da scrivere' (the typewriter) and 'la torta nuziale' (the wedding cake) because its blocky white marble design clashes dramatically with Rome's ancient ochre-and-terracotta skyline.",
+      },
+      {
+        id: "rome-vittoriano-2",
+        spotId: "rome-vittoriano",
+        question: "What is housed at the base of the Vittoriano and guarded by an eternal flame?",
+        options: [
+          "The tomb of Victor Emmanuel II",
+          "The Italian crown jewels",
+          "The Tomb of the Unknown Soldier",
+          "The original Italian constitution",
+        ],
+        correctIndex: 2,
+        explanation:
+          "The Tomb of the Unknown Soldier (Milite Ignoto) has been at the base of the Vittoriano since 1921, honoring unidentified soldiers who died in World War I. The eternal flame is guarded 24/7 by soldiers in ceremonial uniforms.",
+      },
+      {
+        id: "rome-vittoriano-3",
+        spotId: "rome-vittoriano",
+        question: "What remarkable feat happened during the construction of the equestrian statue of Victor Emmanuel II?",
+        options: [
+          "It was carved from a single block of marble",
+          "20 workers had dinner inside the horse's belly",
+          "It was transported from Milan by train",
+          "Lightning struck it three times during installation",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The bronze equestrian statue is so enormous that during its construction, a famous photograph shows 20 workers dining inside the horse's belly, demonstrating the massive scale of the monument.",
+      },
+    ],
+  },
+  {
+    spotId: "rome-bocca-verita",
+    questions: [
+      {
+        id: "rome-bocca-verita-1",
+        spotId: "rome-bocca-verita",
+        question: "What was the Bocca della Verità most likely used for in ancient Rome?",
+        options: [
+          "A decorative fountain head",
+          "A drain cover or manhole for a temple",
+          "A ritual mask for religious ceremonies",
+          "A shield mounted on a city gate",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Archaeologists believe the marble disc was originally an ancient drain cover, probably for a nearby Temple of Hercules. The medieval legend about it biting liars' hands off came centuries later.",
+      },
+      {
+        id: "rome-bocca-verita-2",
+        spotId: "rome-bocca-verita",
+        question: "In which 1953 film did the Bocca della Verità become world-famous?",
+        options: [
+          "La Dolce Vita",
+          "Roman Holiday",
+          "Three Coins in the Fountain",
+          "Ben-Hur",
+        ],
+        correctIndex: 1,
+        explanation:
+          "In 'Roman Holiday,' Gregory Peck improvised a scene pretending the mouth bit his hand off — Audrey Hepburn's terrified scream was completely genuine because she didn't know he was joking.",
+      },
+      {
+        id: "rome-bocca-verita-3",
+        spotId: "rome-bocca-verita",
+        question: "What unusual relic can be found inside the church Santa Maria in Cosmedin behind the Bocca della Verità?",
+        options: [
+          "A piece of the True Cross",
+          "The skull of Saint Valentine",
+          "A stone from the Holy Sepulchre",
+          "The chains of Saint Peter",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The church houses a relic claimed to be the skull of Saint Valentine, the patron saint of love. The 8th-century church itself is one of Rome's most beautiful and often overlooked medieval gems.",
       },
     ],
   },

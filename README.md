@@ -6,12 +6,12 @@ A gamified travel companion PWA for learning Italian history through interactive
 
 ### Cities & Spots
 - **5 cities**: Pisa, Lucca, Firenze, Siena, Roma
-- **42 historical spots** with rich history descriptions and tap-to-reveal fun facts
+- **46 historical spots** with rich history descriptions and tap-to-reveal fun facts
 - Spots organized by day/itinerary schedule
 - Per-city progress tracking with visual progress rings
 
 ### Quiz System
-- **150+ multiple-choice questions** across all standard spots
+- **160+ multiple-choice questions** across all standard spots
 - Instant visual feedback (correct/wrong animations)
 - Explanations after each answer
 - Streak tracking (current + best)
@@ -112,8 +112,8 @@ components/
 data/
   badges.ts             # Badge definitions + unlock engine
   itinerary.ts          # Cities metadata + day schedule
-  spots/                # 42 spots across 5 cities
-  quizzes/              # 150+ standard + 45 AC bonus quiz questions
+  spots/                # 46 spots across 5 cities
+  quizzes/              # 160+ standard + 45 AC bonus quiz questions
     florence-ac.ts      # Florence AC2 bonus (15 questions, gold accent)
     rome-ac.ts          # Rome AC Brotherhood bonus (30 questions, crimson accent)
 
@@ -148,6 +148,11 @@ Italian heritage color palette:
 Custom animations: fade-in, correct answer pulse, wrong answer shake, streak pop.
 
 ## Changelog
+
+### v1.6.0 — Rome Itinerary Sync (2026-04-14)
+- Added 4 new Rome spots: Piazza di Spagna (Day 4), Campo de' Fiori (Day 4), Vittoriano (Day 5), Bocca della Verità (Day 5)
+- 12 new standard quiz questions for the new spots
+- Fixed timeSlots for Fontana di Trevi, Pantheon, Piazza Navona, and Circo Massimo to match updated Notion itinerary
 
 ### v1.5.0 — Florence + AC Bonus Quizzes (2026-04-13)
 - Added Firenze as a new city (Day 3 sprint between Lucca and Siena): 3 spots (Duomo, Signoria, Ponte Vecchio) + 9 standard quiz questions
