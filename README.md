@@ -55,8 +55,15 @@ A gamified travel companion PWA for learning Italian history through interactive
 - Current and best streak tracking
 - Completion badges on spots and cities
 
+### Itinerary Timeline
+- Full day-by-day timeline for all 7 days (Apr 15–21)
+- Horizontal day selector with today auto-highlighted
+- Vertical timeline with spots, meals (Lunch / Dinner), drives, and arrival notes
+- Spots are tappable — link directly to the spot detail page
+- Read-only view — perfect for a travel companion checking the day's plan
+
 ### Navigation
-- Fixed bottom navigation bar (Home, Badges, Profile)
+- Fixed bottom navigation bar (Home, Timeline, Badges, Profile)
 - Active tab highlighting with terracotta color
 - Safe area support for notched devices
 
@@ -93,6 +100,7 @@ Open [http://localhost:3000](http://localhost:3000) on your phone or browser.
 ```
 app/
   page.tsx              # Home dashboard (cities + stats)
+  timeline/page.tsx     # Day-by-day itinerary timeline
   badges/page.tsx       # Trophy room (badge collection grid)
   profile/page.tsx      # Profile setup (name + avatar)
   city/[slug]/page.tsx  # City detail (spots by day + progress)
@@ -128,6 +136,7 @@ lib/
 | Route | Description |
 |-------|-------------|
 | `/` | Home dashboard with city cards and total stats |
+| `/timeline` | Day-by-day itinerary with spots, meals, and drives |
 | `/profile` | Create/edit profile, reset progress |
 | `/city/[slug]` | City overview with spots grouped by day |
 | `/spot/[id]` | Spot detail with history, facts, and challenges |
@@ -148,6 +157,14 @@ Italian heritage color palette:
 Custom animations: fade-in, correct answer pulse, wrong answer shake, streak pop.
 
 ## Changelog
+
+### v1.7.0 — Itinerary Timeline (2026-04-14)
+- New `/timeline` page with a full 7-day day-by-day timeline (Apr 15–21)
+- Horizontal day chip selector; today's day auto-highlighted during the trip
+- Vertical timeline with 4 entry types: spots (tappable), meals, drives, and notes
+- Meals show as Lunch / Dinner placeholders (restaurant suggestions coming later)
+- Drive segments show origin → destination and estimated duration
+- Added Timeline tab to bottom navigation bar (between Home and Badges)
 
 ### v1.6.0 — Rome Itinerary Sync (2026-04-14)
 - Added 4 new Rome spots: Piazza di Spagna (Day 4), Campo de' Fiori (Day 4), Vittoriano (Day 5), Bocca della Verità (Day 5)
