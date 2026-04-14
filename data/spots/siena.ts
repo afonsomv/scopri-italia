@@ -32,7 +32,7 @@ export const sienaSpots: Spot[] = [
           "Find the rectangular fountain at the top of the piazza and identify the relief of the Virgin Mary at its center.",
       },
     ],
-    timeSlot: "14:00",
+    timeSlot: "15:00",
   },
   {
     id: "siena-torre-mangia",
@@ -65,7 +65,7 @@ export const sienaSpots: Spot[] = [
           "Count the steps as you climb to the top. Did you get exactly 400?",
       },
     ],
-    timeSlot: "14:30",
+    timeSlot: "15:30",
   },
   {
     id: "siena-palazzo-pubblico",
@@ -131,7 +131,7 @@ export const sienaSpots: Spot[] = [
           "Count how many columns inside the nave have the distinctive black-and-white striped marble pattern.",
       },
     ],
-    timeSlot: "15:15",
+    timeSlot: "16:00",
   },
   {
     id: "siena-cripta",
@@ -164,7 +164,7 @@ export const sienaSpots: Spot[] = [
         hint: "Look for arched outlines in the walls where passages were bricked shut.",
       },
     ],
-    timeSlot: "16:30",
+    timeSlot: "09:15",
   },
   {
     id: "siena-opera-duomo",
@@ -197,7 +197,7 @@ export const sienaSpots: Spot[] = [
           "Stand in front of Duccio's Maestà and find the tiny panel showing the Entry into Jerusalem — notice how Duccio painted individual faces in the crowd.",
       },
     ],
-    timeSlot: "17:00",
+    timeSlot: "09:45",
   },
   {
     id: "siena-san-domenico",
@@ -230,7 +230,7 @@ export const sienaSpots: Spot[] = [
           "Find the fresco portrait of St. Catherine believed to be the most accurate depiction of her likeness, painted by her contemporary Andrea Vanni.",
       },
     ],
-    timeSlot: "18:15",
+    timeSlot: "17:45",
   },
   {
     id: "siena-fortezza",

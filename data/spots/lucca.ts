@@ -4,7 +4,7 @@ export const luccaSpots: Spot[] = [
   {
     id: "lucca-muralhas",
     citySlug: "lucca",
-    name: "Muralhas de Lucca",
+    name: "Mura di Lucca",
     type: "monument",
     tagline: "Renaissance walls that became the city's favorite park",
     history:
@@ -95,6 +95,39 @@ export const luccaSpots: Spot[] = [
         title: "Terracotta Sea",
         description:
           "Take a photo from the top capturing the sea of terracotta rooftops with the Apuan Alps in the background.",
+      },
+    ],
+  },
+  {
+    id: "lucca-torre-ore",
+    citySlug: "lucca",
+    name: "Torre delle Ore",
+    type: "viewpoint",
+    tagline: "Lucca's tallest tower and the mechanical heartbeat of the city",
+    history:
+      "At nearly 50 meters, the Torre delle Ore is the tallest of Lucca's surviving medieval towers and takes its name from the public clock installed on its facade — one of the first mechanical clocks in Tuscany. The clock has been keeping time for the city since the 14th century, its mechanism visible to this day inside the tower. Climbing its 207 steps rewards visitors with a panoramic view that rivals the more famous Torre Guinigi, but without the famous oak trees — just an unobstructed 360-degree sweep over the rooftops and the Apuan Alps.",
+    funFacts: [
+      "The tower's clock mechanism dates to the 14th century and is still displayed inside — one of the oldest surviving public clock mechanisms in Italy",
+      "At ~50 meters it is taller than the Torre Guinigi (44m) making it the highest structure in the old city",
+      "The tower stands on the Via Fillungo, Lucca's main shopping street, and has watched over the city's commercial life for seven centuries",
+      "Unlike the Torre Guinigi, which was a private family tower, the Torre delle Ore served a civic function — keeping the whole city on schedule",
+    ],
+    timeSlot: "16:30",
+    challenges: [
+      {
+        id: "lucca-torre-ore-c1",
+        type: "observe",
+        title: "The Ancient Mechanism",
+        description:
+          "Find the original 14th-century clock mechanism displayed inside the tower and identify its main moving parts.",
+        hint: "The mechanism is visible as you climb — look for the iron gears and weights.",
+      },
+      {
+        id: "lucca-torre-ore-c2",
+        type: "photo",
+        title: "Rooftop Panorama",
+        description:
+          "Take a photo from the top of the tower capturing the full expanse of Lucca's rooftops with the Apuan Alps in the background.",
       },
     ],
   },

@@ -713,6 +713,39 @@ export const romeSpots: Spot[] = [
     ],
   },
   {
+    id: "rome-portico-ottavia",
+    citySlug: "rome",
+    name: "Portico di Ottavia & Ghetto Ebraico",
+    type: "monument",
+    tagline: "Two thousand years of Jewish Rome, framed by crumbling Roman arches",
+    history:
+      "The Portico di Ottavia, built by Emperor Augustus around 27 BC and dedicated to his sister Octavia, once formed a monumental entrance to a vast colonnade housing temples to Jupiter and Juno. After centuries of decay, a medieval fish market was installed directly inside the ancient ruins — a characteristic Roman habit of repurposing the old. The surrounding Ghetto Ebraico is one of the oldest continuous Jewish settlements in the world, established in 1555 when Pope Paul IV confined Rome's Jews to this bend in the Tiber. The Great Synagogue of Rome (1904) stands as the community's proud landmark.",
+    funFacts: [
+      "A medieval fish market operated inside the ancient portico for centuries — vendors were required by law to donate the head of any fish larger than the portico arch to local authorities",
+      "The Jewish community of Rome is the oldest in Europe, predating the destruction of Jerusalem in 70 AD — Roman Jews descend from people who were already there before the diaspora",
+      "The Synagogue of Rome has a distinctly un-European square dome, deliberately designed to stand apart from the city's many Catholic domes",
+      "During WWII, the Nazis demanded 50 kg of gold from the Jewish community in 48 hours as a ransom — it was delivered, and the community was still deported anyway",
+    ],
+    timeSlot: "11:45",
+    challenges: [
+      {
+        id: "rome-portico-ottavia-c1",
+        type: "observe",
+        title: "Ancient Meets Medieval",
+        description:
+          "Find the point where the medieval church of Sant'Angelo in Pescheria was built directly into the ancient Roman portico — spot the original Roman columns embedded in the later structure.",
+        hint: "Look at the facade of the church at the entrance to the Ghetto — Roman columns and medieval brickwork merge into a single wall.",
+      },
+      {
+        id: "rome-portico-ottavia-c2",
+        type: "find",
+        title: "The Square Dome",
+        description:
+          "Find the Great Synagogue of Rome and spot its distinctive square dome — deliberately designed to look unlike any Catholic church in the city.",
+      },
+    ],
+  },
+  {
     id: "rome-isola-tiberina",
     citySlug: "rome",
     name: "Isola Tiberina",
