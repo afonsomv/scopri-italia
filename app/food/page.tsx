@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
 // ── Types ──────────────────────────────────────────────────────────────────
@@ -409,6 +409,16 @@ function matchesFilter(spot: FoodSpot, filter: FilterType): boolean {
 
 export default function FoodPage() {
   const [filter, setFilter] = useState<FilterType>("all");
+  const [highlightCity, setHighlightCity] = useState<string | null>(null);
+
+  useEffect(() => {
+    const hash = window.location.hash.slice(1);
+    if (hash) {
+      setHighlightCity(hash);
+      const timer = setTimeout(() => setHighlightCity(null), 1500);
+      return () => clearTimeout(timer);
+    }
+  }, []);
 
   return (
     <div className="animate-fade-in">
@@ -448,7 +458,9 @@ export default function FoodPage() {
 
           return (
             <section key={city.slug} id={city.slug}>
-              <div className="flex items-center gap-2 mb-3">
+              <div className={`flex items-center gap-2 mb-3 px-2 py-1 -mx-2 rounded-lg transition-colors duration-1000 ${
+                highlightCity === city.slug ? "bg-gold-light/30" : ""
+              }`}>
                 <span className="text-xl">{city.emoji}</span>
                 <h2 className="text-base font-bold text-ink">{city.name}</h2>
                 <span className="text-xs text-stone-light">
