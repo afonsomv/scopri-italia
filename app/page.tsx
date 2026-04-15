@@ -92,6 +92,24 @@ export default function Home() {
         </p>
       </div>
 
+      {/* Quick links */}
+      <div className="flex gap-2 mb-4">
+        <Link
+          href="/timeline"
+          className="flex-1 flex items-center gap-2 p-3 rounded-xl bg-white border border-warm-white text-sm font-medium text-ink hover:border-terracotta/30 transition-colors"
+        >
+          <span>🗓️</span>
+          <span>Timeline</span>
+        </Link>
+        <Link
+          href="/food"
+          className="flex-1 flex items-center gap-2 p-3 rounded-xl bg-white border border-warm-white text-sm font-medium text-ink hover:border-terracotta/30 transition-colors"
+        >
+          <span>🍝</span>
+          <span>Food Guide</span>
+        </Link>
+      </div>
+
       {/* City cards */}
       <div className="space-y-3">
         {cities.map((city) => {

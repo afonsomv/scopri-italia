@@ -372,7 +372,7 @@ export default function TimelinePage() {
       <div className="px-4 pb-8">
         <div className="relative">
           {/* Vertical line */}
-          <div className="absolute left-4 top-4 bottom-4 w-px bg-warm-white" />
+          <div className="absolute left-16 top-4 bottom-4 w-px bg-warm-white" />
 
           <div className="space-y-0 pl-12">
             {day.entries.map((entry, i) => {

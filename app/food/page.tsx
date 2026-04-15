@@ -392,8 +392,8 @@ const FILTERS: { key: FilterType; label: string }[] = [
   { key: "all", label: "All" },
   { key: "restaurant", label: "Restaurants" },
   { key: "pizza", label: "Pizza" },
-  { key: "gelato-cafe", label: "Gelato & Coffee" },
-  { key: "street", label: "Street Food" },
+  { key: "gelato-cafe", label: "Gelato & Cafe" },
+  { key: "street", label: "Street" },
 ];
 
 function matchesFilter(spot: FoodSpot, filter: FilterType): boolean {
