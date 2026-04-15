@@ -4,7 +4,7 @@ export const pisaSpots: Spot[] = [
   {
     id: "pisa-torre",
     citySlug: "pisa",
-    name: "Torre Inclinada de Pisa",
+    name: "Torre Pendente di Pisa",
     type: "monument",
     tagline: "The world's most famous architectural mistake",
     history:
