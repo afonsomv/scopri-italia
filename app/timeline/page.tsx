@@ -199,13 +199,18 @@ function spotTypeEmoji(type: Spot["type"]): string {
   return map[type] ?? "📍";
 }
 
+function getLocalDateISO(): string {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+}
+
 function getDefaultDayIndex(): number {
   const stored = typeof window !== "undefined" ? sessionStorage.getItem("timeline-day") : null;
   if (stored !== null) {
     const n = Number(stored);
     if (n >= 0 && n < DAYS.length) return n;
   }
-  const todayISO = new Date().toISOString().slice(0, 10);
+  const todayISO = getLocalDateISO();
   const idx = DAYS.findIndex((d) => d.dateISO === todayISO);
   return idx >= 0 ? idx : 0;
 }
@@ -308,7 +313,7 @@ export default function TimelinePage() {
   }
   const day = DAYS[activeIdx];
 
-  const isTodayActive = DAYS[activeIdx].dateISO === new Date().toISOString().slice(0, 10);
+  const isTodayActive = DAYS[activeIdx].dateISO === getLocalDateISO();
 
   return (
     <div className="animate-fade-in">
@@ -321,7 +326,7 @@ export default function TimelinePage() {
       {/* Day selector */}
       <div className="flex gap-2 overflow-x-auto px-4 pb-3 scrollbar-hide">
         {DAYS.map((d, idx) => {
-          const isToday = d.dateISO === new Date().toISOString().slice(0, 10);
+          const isToday = d.dateISO === getLocalDateISO();
           const isActive = idx === activeIdx;
           return (
             <button
