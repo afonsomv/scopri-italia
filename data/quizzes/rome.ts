@@ -1190,4 +1190,52 @@ export const romeQuizzes: QuizSet[] = [
       },
     ],
   },
+{
+    spotId: "rome-portico-ottavia",
+    questions: [
+      {
+        id: "rome-portico-ottavia-1",
+        spotId: "rome-portico-ottavia",
+        question: "Who built the Portico di Ottavia and to whom was it dedicated?",
+        options: [
+          "Julius Caesar, dedicated to his mother",
+          "Emperor Augustus, dedicated to his sister Octavia",
+          "Emperor Hadrian, dedicated to his wife Sabina",
+          "Emperor Titus, dedicated to the Jewish people",
+        ],
+        correctIndex: 1,
+        explanation:
+          "Emperor Augustus rebuilt and dedicated the portico around 27 BC in honor of his sister Octavia Minor. It once enclosed temples to Jupiter and Juno within a grand colonnade.",
+      },
+      {
+        id: "rome-portico-ottavia-2",
+        spotId: "rome-portico-ottavia",
+        question: "What unusual activity took place inside the ancient ruins of the Portico di Ottavia for centuries?",
+        options: [
+          "A gladiatorial school",
+          "A medieval fish market",
+          "A papal court of justice",
+          "A silk trading post",
+        ],
+        correctIndex: 1,
+        explanation:
+          "A fish market operated inside the ruins from the Middle Ages until the 19th century. By law, vendors had to donate the head of any fish larger than the portico arch to local authorities.",
+      },
+      {
+        id: "rome-portico-ottavia-3",
+        spotId: "rome-portico-ottavia",
+        question: "What makes the Jewish community of Rome unique in Europe?",
+        options: [
+          "It is the largest Jewish community in Europe",
+          "It predates the destruction of Jerusalem in 70 AD — Roman Jews were already there before the diaspora",
+          "It was founded by refugees from the Spanish Inquisition in 1492",
+          "It is the only Jewish community never to have been expelled from its city",
+        ],
+        correctIndex: 1,
+        explanation:
+          "The Jewish community of Rome is the oldest in Europe, with roots predating the destruction of the Second Temple in 70 AD. Roman Jews descend from people already living in Rome before the great diaspora.",
+      },
+    ],
+  },
+
 ];
