@@ -283,4 +283,52 @@ export const luccaQuizzes: QuizSet[] = [
       },
     ],
   },
+{
+  spotId: "lucca-torre-ore",
+  questions: [
+    {
+      id: "lucca-torre-ore-1",
+      spotId: "lucca-torre-ore",
+      question: "What gives the Torre delle Ore its name?",
+      options: [
+        "It was built in exactly one hour",
+        "A public clock installed on its facade",
+        "It chimes every hour with a famous melody",
+        "It was commissioned by a clockmaker family",
+      ],
+      correctIndex: 1,
+      explanation:
+        "The tower takes its name from the public clock on its facade — one of the first mechanical clocks in Tuscany, keeping time for the city since the 14th century.",
+    },
+    {
+      id: "lucca-torre-ore-2",
+      spotId: "lucca-torre-ore",
+      question: "How does the Torre delle Ore compare to the Torre Guinigi?",
+      options: [
+        "It is shorter but has a rooftop garden",
+        "They are exactly the same height",
+        "It is taller, at around 50 meters vs 44 meters",
+        "It is older by over 200 years",
+      ],
+      correctIndex: 2,
+      explanation:
+        "At roughly 50 meters, the Torre delle Ore is actually the tallest structure in Lucca's old city, edging out the more famous Torre Guinigi at 44 meters.",
+    },
+    {
+      id: "lucca-torre-ore-3",
+      spotId: "lucca-torre-ore",
+      question: "What makes the Torre delle Ore different from family towers like the Torre Guinigi?",
+      options: [
+        "It was built from marble instead of brick",
+        "It served a civic function, keeping time for the whole city",
+        "It was built by the Roman Republic",
+        "It was used exclusively as a prison",
+      ],
+      correctIndex: 1,
+      explanation:
+        "Unlike private family towers built for prestige, the Torre delle Ore served a public civic purpose — its clock kept the whole city on schedule for seven centuries.",
+    },
+  ],
+},
+
 ];
